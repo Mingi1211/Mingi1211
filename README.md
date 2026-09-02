@@ -113,15 +113,16 @@ Generalization to unseen objects and tasks: `blue cube lift` ✅ 0.0120 m · `gr
 
 ---
 
-## ▍05 · now
+## ▍05 · what's next
 
 ```
-[x]  VLA policy running end-to-end on real hardware
-[ ]  Whole-body control formulations — task-priority & QP-based stacks
-[ ]  Humanoid balance / full-body motion reproduction in MuJoCo
-[ ]  The open question: can a learned policy be projected onto a WBC stack
-     without throwing away its constraints?
+done   ·  a VLA policy running end-to-end on real hardware
+next   ·  the same problem, but for a whole body instead of a 4-DoF arm
 ```
+
+Driving a gripper with a learned policy was the entry point, not the destination. What I want to
+work on is **whole-body control for humanoid robots** — and how much of a learned policy survives
+once it has to respect the dynamics and constraints of a full body.
 
 ---
 
