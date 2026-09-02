@@ -124,14 +124,6 @@ Driving a gripper with a learned policy was the entry point, not the destination
 work on is **whole-body control for humanoid robots** — and how much of a learned policy survives
 once it has to respect the dynamics and constraints of a full body.
 
----
-
-## ▍06 · stats
-
-<div align="center">
-
-![stats](https://github-readme-stats.vercel.app/api?username=Mingi1211&show_icons=true&hide_border=true&title_color=1B98E0&icon_color=1B98E0&include_all_commits=true)
-![langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Mingi1211&layout=compact&hide_border=true&title_color=1B98E0&langs_count=6)
 
 </div>
 
