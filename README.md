@@ -109,7 +109,7 @@ reach the target and then simply never close.
 
 Generalization to unseen objects and tasks: `blue cube lift` ✅ 0.0120 m · `green sphere push` ✅ 0.0104 m.
 
-➜ **[Mingi1211/PhysicalAI_Assignment_2024405002](https://github.com/Mingi1211/PhysicalAI_Assignment_2024405002)**
+➜ **[Mingi1211/openvla-raccoonbot](https://github.com/Mingi1211/openvla-raccoonbot)**
 
 ---
 
