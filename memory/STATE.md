@@ -97,17 +97,12 @@
 
 ## 다음 액션
 
-1. **[사용자]** **로컬 sync 재실행** — 아직 Claude가 읽는 폴더에 스킬이 없다.
-   원인은 해결됨: 이 PC의 Git Bash `HOME`이 `%APPDATA%\SPB_Data` 라 엉뚱한 곳에 썼는데,
-   **2026-09-16 스크립트 수정으로 `USERPROFILE` 을 우선 쓰도록 고쳤다**(양쪽 경로 테스트 완료).
-   → 둘 중 아무거나 한 번:
-   ```
-   cd /c/Mingi1211 && git pull && bash scripts/sync-memory.sh
-   powershell -ExecutionPolicy Bypass -File C:\Mingi1211\scripts\sync-memory.ps1
-   ```
-   실행 후 `대상: .../Users/<이름>/.claude` 로 찍히는지 확인할 것. 그래야 스킬 4개가 로컬에 들어간다
-   · `C:/Mingi1211` 은 여러 세션이 동시에 쓰는 클론이다 → **커밋 전 `git status`** 로 남의 미커밋 파일이
-     섞이는지 확인 (09-16에 실제로 섞여 커밋됨, LEDGER 참고)
+1. ~~**[사용자]** 로컬 sync~~ — ✅ **완료 (2026-09-16).**
+   Git Bash에서 `대상: /c/Users/김민기/.claude` 확인, 스킬 4개(`deck-factory`·`docx-page-fit`·
+   `mingi-loop`·`project-ideation`) + CLAUDE.md 포인터 정상 기록. 정본은 `C:/Mingi1211`.
+   · **잔재 정리 권장**: 이전 실패 sync가 만든 `%APPDATA%\SPB_Data\.claude` 와
+     멈춰 있는 클론 `%APPDATA%\SPB_Data\repos\mingi-memory`(09a3ab7). Claude는 안 읽지만 헷갈린다
+   · `C:/Mingi1211` 은 여러 세션이 동시에 쓰는 클론 → **커밋 전 `git status`** 로 남의 미커밋 파일 확인
 2. **[사용자]** **Ubuntu 24.04로 부팅했을 때도 1회 실행** — `~/.claude`는 OS별로 따로다
 3. **[사용자가 답할 것]** 캐릭터를 실제 애니메이션 GIF로 뽑을지 — 두 번 제안했고 아직 답을 못 받음
 4. **[팀]** 다음 회의 전: 팀원 8명이 각자 수강한 과목 목록 작성 → 이게 1차 데이터

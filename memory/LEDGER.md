@@ -146,6 +146,8 @@
 
 | 2026-09-16 | [정정] | 위 Git Bash `HOME` 문제는 **스크립트 수정으로 해결**. `sync-memory.sh` 가 `USERPROFILE` 이 있고 `cygpath` 가 있으면 `%USERPROFILE%\.claude` 를 대상으로 삼는다. 리눅스(HOME) · Git Bash(USERPROFILE) 양쪽 실행 테스트 통과. 이제 두 스크립트 중 아무거나 써도 된다 | `scripts/sync-memory.sh`, 테스트 로그 |
 
+| 2026-09-16 | 사실 | **로컬 Windows sync 성공.** Git Bash 출력 `대상: /c/Users/김민기/.claude`, 스킬 4개 + CLAUDE.md 포인터 기록됨. 로컬 Claude Code 세션은 이제 스킬 자동 로드 + STATE 경로 인지 상태 | 사용자가 붙여준 실행 출력 |
+
 ## 미확인 — 확인되면 `[정정]`으로 새 줄 추가할 것
 
 | 날짜 | 분류 | 내용 |
