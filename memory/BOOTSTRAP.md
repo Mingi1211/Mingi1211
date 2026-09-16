@@ -52,6 +52,11 @@ git clone https://github.com/Mingi1211/Mingi1211.git ~/repos/mingi-memory
 bash ~/repos/mingi-memory/scripts/sync-memory.sh
 ```
 
+### 듀얼부팅이면 OS마다 한 번씩
+
+`~/.claude`는 **OS별로 따로** 존재한다. Windows에서 돌렸다고 Ubuntu 쪽에 적용되지 않는다.
+**부팅한 OS마다 한 번씩** 실행해야 한다. 레포 클론도 각각 필요하다.
+
 ### 이후 갱신
 
 레포가 바뀔 때마다 같은 스크립트를 다시 실행한다. 내부에서 `git pull`을 하므로 클론은 최초 1회면 된다.
@@ -117,12 +122,26 @@ Mingi1211/Mingi1211 에 커밋·푸시        ← 정본은 항상 여기 하나
 | `이 시스템에서 스크립트를 실행할 수 없으므로` | 실행 정책. `powershell -ExecutionPolicy Bypass -File ...` 로 실행 |
 | `git: 명령을 찾을 수 없습니다` | Git for Windows 미설치 → <https://git-scm.com/download/win> |
 | `~/.claude/CLAUDE.md` 한글이 깨짐 | 스크립트는 UTF-8(BOM 없음)로 쓴다. 메모장으로 저장하면 깨질 수 있으니 VS Code로 열 것 |
+| `~/.claude/CLAUDE.md` 경로가 `/c/Users/...` 로 적힘 | Git Bash의 MSYS 경로. 현재 스크립트는 `cygpath -m`으로 `C:/Users/...` 로 바꿔 적는다. 옛 버전으로 돌렸다면 **최신 스크립트로 다시 실행**할 것 |
 | 스크립트 자체가 안 되면 | **수동으로 해도 된다.** `.claude/skills/` 의 폴더 3개를 `%USERPROFILE%\.claude\skills\` 로 복사하고, `%USERPROFILE%\.claude\CLAUDE.md` 에 STATE.md 경로를 가리키는 문장 몇 줄을 직접 적으면 끝이다 |
 
 ## 확인 방법
 
-새 세션에서 이렇게 물어보면 된다.
+**아무 폴더에서나** Claude Code를 새로 열고 이렇게 물어본다.
 
 > "내 STATE.md에 뭐라고 적혀 있어?"
 
-파일을 못 찾는다고 하면 연결이 안 된 것이다. 방법 C로 붙인다.
+- **진행 중인 프로젝트(학기예보) 이야기가 나오면** → 성공
+- **파일을 못 찾는다고 하면** → 연결 실패. `~/.claude/CLAUDE.md`를 열어 경로가 실제로 존재하는지 확인한다.
+  경로가 `/c/Users/...` 형태면 최신 스크립트로 다시 실행할 것
+- **읽기 권한을 물어보면** → 정상이다. 작업 폴더 밖 파일이라 그렇다. 승인하면 된다
+
+### 무엇이 자동이고 무엇이 아닌가
+
+| | 자동인가 |
+|---|---|
+| 스킬 3개 로드 (`~/.claude/skills/`) | ✅ 설명이 맞으면 자동 |
+| `~/.claude/CLAUDE.md` 로드 | ✅ 매 세션 자동 |
+| STATE.md **읽기** | △ CLAUDE.md의 지시를 따라 읽지만, 폴더 밖 접근이라 승인이 필요할 수 있다 |
+| STATE.md **갱신** | ❌ **지시일 뿐 강제가 아니다.** 중요한 작업 뒤에는 "기억 갱신해줘" 한마디 하는 게 확실하다 |
+| 웹/모바일 세션 | ❌ `~/.claude`가 없다. 방법 B 또는 C 필요 |

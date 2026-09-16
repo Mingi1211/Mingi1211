@@ -5,10 +5,22 @@ set -euo pipefail
 
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 DEST="${HOME}/.claude"
+
+# Git Bash(MSYS)에서는 pwd가 /c/Users/... 를 준다. 윈도우 네이티브 Claude Code는
+# 그 경로를 못 읽으므로, CLAUDE.md 에 적을 경로만 C:/Users/... 형태로 바꾼다.
+# (파일 조작에는 계속 $REPO 를 쓴다 — MSYS 안에서는 그쪽이 맞다)
+if command -v cygpath >/dev/null 2>&1; then
+  REPO_PATH="$(cygpath -m "${REPO}")"
+else
+  REPO_PATH="${REPO}"
+fi
 MARK_BEGIN="<!-- mingi-memory:begin -->"
 MARK_END="<!-- mingi-memory:end -->"
 
 echo "정본: ${REPO}"
+if [ "${REPO_PATH}" != "${REPO}" ]; then
+  echo "  (윈도우 경로로 기록: ${REPO_PATH})"
+fi
 git -C "${REPO}" pull --ff-only || echo "  (pull 생략 — 오프라인이거나 로컬 변경 있음)"
 
 mkdir -p "${DEST}/skills"
@@ -24,11 +36,11 @@ done
 BLOCK="${MARK_BEGIN}
 ## 내 기억 저장소
 
-정본: ${REPO}  (GitHub: Mingi1211/Mingi1211)
+정본: ${REPO_PATH}  (GitHub: Mingi1211/Mingi1211)
 
-- 세션을 시작하면 **\`${REPO}/memory/STATE.md\`** 를 먼저 읽는다.
-- 사용자 고정 정보는 \`${REPO}/memory/PROFILE.md\`.
-- \"전에 왜 이렇게 정했지?\" 는 \`${REPO}/memory/LEDGER.md\` 를 grep 한다.
+- 세션을 시작하면 **\`${REPO_PATH}/memory/STATE.md\`** 를 먼저 읽는다.
+- 사용자 고정 정보는 \`${REPO_PATH}/memory/PROFILE.md\`.
+- \"전에 왜 이렇게 정했지?\" 는 \`${REPO_PATH}/memory/LEDGER.md\` 를 grep 한다.
 - 의미 있는 작업을 했으면 **세션 종료 시 STATE.md / LEDGER.md 를 갱신하고 그 레포에 커밋**한다.
 - 상세 운영 규칙은 \`mingi-loop\` 스킬.
 ${MARK_END}"
