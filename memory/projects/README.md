@@ -8,6 +8,7 @@
 | `openvla-raccoonbot.md` | `Mingi1211/openvla-raccoonbot` | 피지컬AI 텀프로젝트 — VLA 정책을 4-DoF 팔에 태우기 |
 | `dreamlab-bootcamp.md` | `Mingi1211/dreamlab-bootcamp` | DREAM Lab 부트캠프 실습 (uv·tmux·Remote-SSH 익히기) |
 | `sensor-logger.md` | `Mingi1211/sensor-logger` | uv + Docker 패키징 연습용 최소 로깅 파이프라인 |
+| `chambit-alohamini-serving.md` | (레포 없음 · 2026-09-14 대화 기록) | 참빛설계 로봇인턴십 — AlohaMini 트레이 서빙·정리, 계획서·조달·조립 검토 |
 
 ## 기타 (별도 파일 없음)
 
