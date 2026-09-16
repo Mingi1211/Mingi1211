@@ -8,6 +8,7 @@
 2. 작업이 아래 중 하나에 해당하면 해당 스킬을 부른다.
    - 학교/팀 프로젝트 **주제 선정·기획·검증** → `project-ideation`
    - **발표 덱·프로토타입 목업·스크린샷** 제작 → `deck-factory`
+   - 워드(docx) 과제·보고서를 **정해진 쪽수에 맞추기** → `docx-page-fit`
    - 이 기억 시스템 자체를 **운영·갱신** → `mingi-loop`
 3. 사용자 고정 정보가 필요하면 `memory/PROFILE.md`.
    "이거 전에 왜 이렇게 정했지?"는 `memory/LEDGER.md`.

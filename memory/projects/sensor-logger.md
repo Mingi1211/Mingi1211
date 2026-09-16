@@ -25,3 +25,9 @@ docker build -t sensor-logger . && docker run --rm -v "$PWD/out:/app/out" sensor
 
 `dreamlab-bootcamp`(8월)에서 uv를 익히고, 그 다음 단계로 **Docker 재현성까지 붙인 흐름**(9월).
 연구 코드가 아니라 **도구 체계를 갖추는 작업**이다.
+
+## ⚠️ 출처 정정 (2026-09-16 추가)
+
+위 README는 **2026-09-02 Claude 대화 세션에서 Claude가 작성**했고 사용자가 push한 것이다(`ae641e0`).
+당시 README는 0바이트였고, "packaging exercise"라는 목적은 **Claude가 `Dockerfile` + `uv` 구성을 보고 추론한 표현**이다.
+사용자가 목적을 직접 말한 적은 없다 → 위 "목적 (README에 명시)" 절은 **[미확인]** 으로 읽을 것. 경위는 `github-profile.md`.
