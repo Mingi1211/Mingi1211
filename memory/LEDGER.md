@@ -99,6 +99,7 @@
 | 2026-09-16 | [정정] | 위 2026-09-16 `sensor-logger` 줄의 "packaging exercise"는 사용자 진술이 아니다. **2026-09-02 Claude가 코드(Dockerfile + uv)를 보고 추론해 README에 쓴 표현**. 목적은 미확인 | 그 README를 작성한 대화 세션 |
 | 2026-09-16 | 사실 | 프로필 README 자체가 **2026-09-02 Claude 대화 세션 산출물**. 다른 세션이 "README에서 읽은 프로필·스택"으로 쓰는 내용의 출처가 이것 | 커밋 `6bca846`~`5a07555` |
 | 2026-09-16 | 사실 | 커밋 `2f67f0a`(참빛설계 기록)에 **동시에 작업 중이던 인수인계 세션의 `projects/github-profile.md`·`robot-control-hw1.md`가 함께 들어갔다.** 내용은 그 세션 작업본과 동일해 손실 없음. `C:/Mingi1211` 한 클론을 두 세션이 동시에 써서 생김 | `git show --stat 2f67f0a`, 작업 트리 diff 0 |
+| 2026-09-16 | 환경 | **이 PC의 Git Bash `HOME` = `%APPDATA%\SPB_Data`** → `sync-memory.sh` 는 `SPB_Data\.claude` 에 썼고, Windows Claude Code가 읽는 `%USERPROFILE%\.claude` 에는 skills·CLAUDE.md가 **없다.** 로컬 Windows sync는 `sync-memory.ps1` 로 해야 한다. (09-16 LEDGER의 "sync 1회 실행 완료"는 실제로는 효과가 없었던 것) | Git Bash `echo $HOME`, PowerShell `Test-Path`, `CLAUDE_CONFIG_DIR` 미설정 |
 
 ## 미확인 — 확인되면 `[정정]`으로 새 줄 추가할 것
 
