@@ -4,7 +4,14 @@
 set -euo pipefail
 
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-DEST="${HOME}/.claude"
+
+# Git Bash 의 HOME 은 %USERPROFILE% 이 아닐 수 있다 (이 PC는 %APPDATA%\SPB_Data).
+# Claude Code 가 읽는 곳은 언제나 %USERPROFILE%\.claude 이므로, 윈도우에서는 그쪽을 쓴다.
+if [ -n "${USERPROFILE:-}" ] && command -v cygpath >/dev/null 2>&1; then
+  DEST="$(cygpath -u "${USERPROFILE}")/.claude"
+else
+  DEST="${HOME}/.claude"
+fi
 
 # Git Bash(MSYS)에서는 pwd가 /c/Users/... 를 준다. 윈도우 네이티브 Claude Code는
 # 그 경로를 못 읽으므로, CLAUDE.md 에 적을 경로만 C:/Users/... 형태로 바꾼다.
@@ -18,6 +25,7 @@ MARK_BEGIN="<!-- mingi-memory:begin -->"
 MARK_END="<!-- mingi-memory:end -->"
 
 echo "정본: ${REPO}"
+echo "대상: ${DEST}"
 if [ "${REPO_PATH}" != "${REPO}" ]; then
   echo "  (윈도우 경로로 기록: ${REPO_PATH})"
 fi

@@ -97,17 +97,17 @@
 
 ## 다음 액션
 
-1. **[사용자]** Windows에서 Git Bash로 sync 1회 실행 **완료**(2026-09-16).
-   단 그 시점 스크립트에 MSYS 경로 버그가 있었으므로 **최신 스크립트로 한 번 더 실행할 것**
-   (`cd ~/repos/mingi-memory && git pull && bash scripts/sync-memory.sh`)
-   → 그 뒤 아무 폴더에서 새 세션 열고 "내 STATE.md에 뭐라고 적혀 있어?" 로 검증
-   · ⚠️ **09-16 확인: Git Bash sync는 Claude가 읽는 폴더에 닿지 않았다.** 이 PC의 Git Bash는 `HOME` 이
-     `%APPDATA%\SPB_Data` 라서 sync가 `SPB_Data\.claude` 에 썼다. 실제 설정 폴더 `%USERPROFILE%\.claude` 에는
-     `skills`·`CLAUDE.md` 가 **없다** (`CLAUDE_CONFIG_DIR` 도 미설정). → **Git Bash 말고 PowerShell 버전으로 실행할 것:**
-     `powershell -ExecutionPolicy Bypass -File C:\Mingi1211\scripts\sync-memory.ps1` (이 스크립트는 `%USERPROFILE%\.claude` 에 씀)
-     그래야 `docx-page-fit` 포함 스킬 4개가 로컬 세션에 들어간다. `~/repos/mingi-memory` 클론은 `09a3ab7` 에 멈춰 있음
-   · `C:/Mingi1211` 도 같은 레포의 클론이다(프로필 README 작업 때 먼저 생김). **여러 세션이 이 폴더를 동시에 쓴다** →
-     커밋 전 `git status` 로 남의 미커밋 파일이 섞이는지 확인할 것 (09-16에 실제로 섞여 커밋됨, LEDGER 참고)
+1. **[사용자]** **로컬 sync 재실행** — 아직 Claude가 읽는 폴더에 스킬이 없다.
+   원인은 해결됨: 이 PC의 Git Bash `HOME`이 `%APPDATA%\SPB_Data` 라 엉뚱한 곳에 썼는데,
+   **2026-09-16 스크립트 수정으로 `USERPROFILE` 을 우선 쓰도록 고쳤다**(양쪽 경로 테스트 완료).
+   → 둘 중 아무거나 한 번:
+   ```
+   cd /c/Mingi1211 && git pull && bash scripts/sync-memory.sh
+   powershell -ExecutionPolicy Bypass -File C:\Mingi1211\scripts\sync-memory.ps1
+   ```
+   실행 후 `대상: .../Users/<이름>/.claude` 로 찍히는지 확인할 것. 그래야 스킬 4개가 로컬에 들어간다
+   · `C:/Mingi1211` 은 여러 세션이 동시에 쓰는 클론이다 → **커밋 전 `git status`** 로 남의 미커밋 파일이
+     섞이는지 확인 (09-16에 실제로 섞여 커밋됨, LEDGER 참고)
 2. **[사용자]** **Ubuntu 24.04로 부팅했을 때도 1회 실행** — `~/.claude`는 OS별로 따로다
 3. **[사용자가 답할 것]** 캐릭터를 실제 애니메이션 GIF로 뽑을지 — 두 번 제안했고 아직 답을 못 받음
 4. **[팀]** 다음 회의 전: 팀원 8명이 각자 수강한 과목 목록 작성 → 이게 1차 데이터

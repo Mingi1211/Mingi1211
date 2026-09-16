@@ -144,6 +144,8 @@
 | 2026-09-16 | 사실 | 커밋 `2f67f0a`(참빛설계 기록)에 **동시에 작업 중이던 인수인계 세션의 `projects/github-profile.md`·`robot-control-hw1.md`가 함께 들어갔다.** 내용은 그 세션 작업본과 동일해 손실 없음. `C:/Mingi1211` 한 클론을 두 세션이 동시에 써서 생김 | `git show --stat 2f67f0a`, 작업 트리 diff 0 |
 | 2026-09-16 | 환경 | **이 PC의 Git Bash `HOME` = `%APPDATA%\SPB_Data`** → `sync-memory.sh` 는 `SPB_Data\.claude` 에 썼고, Windows Claude Code가 읽는 `%USERPROFILE%\.claude` 에는 skills·CLAUDE.md가 **없다.** 로컬 Windows sync는 `sync-memory.ps1` 로 해야 한다. (09-16 LEDGER의 "sync 1회 실행 완료"는 실제로는 효과가 없었던 것) | Git Bash `echo $HOME`, PowerShell `Test-Path`, `CLAUDE_CONFIG_DIR` 미설정 |
 
+| 2026-09-16 | [정정] | 위 Git Bash `HOME` 문제는 **스크립트 수정으로 해결**. `sync-memory.sh` 가 `USERPROFILE` 이 있고 `cygpath` 가 있으면 `%USERPROFILE%\.claude` 를 대상으로 삼는다. 리눅스(HOME) · Git Bash(USERPROFILE) 양쪽 실행 테스트 통과. 이제 두 스크립트 중 아무거나 써도 된다 | `scripts/sync-memory.sh`, 테스트 로그 |
+
 ## 미확인 — 확인되면 `[정정]`으로 새 줄 추가할 것
 
 | 날짜 | 분류 | 내용 |
