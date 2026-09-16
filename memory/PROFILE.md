@@ -15,7 +15,9 @@
 
 ## 개발 환경
 
-- Ubuntu 24.04 · VS Code Remote-SSH · A100 원격 학습
+- **로컬 PC: Windows** ← Claude Code를 돌리는 곳. **`bash` 없음.**
+  로컬 실행용 스크립트는 **PowerShell(`.ps1`)** 이나 **Git Bash**로 제공할 것
+- 연구·학습 환경: Ubuntu 24.04 · VS Code Remote-SSH · A100 원격 학습 (원격 접속 대상)
 - MuJoCo, OpenVLA, PyTorch, HuggingFace, RLDS/TFDS
 - Python · NumPy · OpenCV · Docker · uv · Git
 

@@ -31,8 +31,9 @@
 
 ## 다음 액션
 
-1. **[사용자]** 로컬 PC에서 `bash scripts/sync-memory.sh` 1회 실행 → 모든 프로젝트에서 기억이 걸린다
-   (main에 병합됐으므로 `git clone` 후 바로 실행 가능. 브랜치 체크아웃 불필요)
+1. **[사용자]** 로컬 PC(**Windows**)에서 동기화 1회 실행 → 모든 프로젝트에서 기억이 걸린다
+   Git Bash: `bash scripts/sync-memory.sh` / PowerShell: `powershell -ExecutionPolicy Bypass -File .\scripts\sync-memory.ps1`
+   (main 병합 완료라 `git clone` 후 바로 실행 가능. 브랜치 체크아웃 불필요)
 2. **[사용자가 답할 것]** 캐릭터를 실제 애니메이션 GIF로 뽑을지 — 두 번 제안했고 아직 답을 못 받음
 3. **[팀]** 다음 회의 전: 팀원 8명이 각자 수강한 과목 목록 작성 → 이게 1차 데이터
 4. **[팀]** 캐릭터 방향 확정 · 마스코트 2차 가공 신청 여부 결정

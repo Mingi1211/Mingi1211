@@ -19,24 +19,48 @@
 
 ---
 
-## 방법 A — 로컬 PC (Ubuntu 데스크톱 / CLI) · 권장
+## 방법 A — 로컬 PC · 권장 (한 번만 하면 모든 프로젝트에 적용)
 
-한 번만 해두면 **모든 프로젝트**에서 자동으로 걸린다.
+### Windows (사용자 기본 환경)
+
+`bash`가 없다. 아래 둘 중 하나를 쓴다.
+
+**A-1. Git Bash — 권장.** Git for Windows에 딸려 오므로 이미 설치돼 있다.
+시작 메뉴에서 "Git Bash"를 열고:
 
 ```bash
-# 1. 정본 클론 (최초 1회)
 git clone https://github.com/Mingi1211/Mingi1211.git ~/repos/mingi-memory
-
-# 2. 동기화 (레포가 갱신될 때마다)
 bash ~/repos/mingi-memory/scripts/sync-memory.sh
 ```
 
-스크립트가 하는 일: 최신 커밋을 받아 `.claude/skills/*`를 `~/.claude/skills/`로 복사하고,
-`~/.claude/CLAUDE.md`에 기억 파일 위치를 가리키는 블록을 넣는다(중복 삽입 방지).
+**A-2. PowerShell.** Git Bash를 안 쓸 때.
 
-> 심볼릭 링크(`ln -s`)로 걸면 `git pull`만으로 동기화되지만,
-> 링크된 스킬 디렉터리가 인식되는지는 버전에 따라 다를 수 있다. **동작하면 그게 더 편하다.**
-> 확실한 쪽은 위의 복사 방식이다.
+```powershell
+git clone https://github.com/Mingi1211/Mingi1211.git $env:USERPROFILE\repos\mingi-memory
+powershell -ExecutionPolicy Bypass -File $env:USERPROFILE\repos\mingi-memory\scripts\sync-memory.ps1
+```
+
+> `-ExecutionPolicy Bypass`가 필요한 이유: 윈도우는 기본적으로 서명 없는 `.ps1` 실행을 막는다.
+> 이 옵션은 **그 한 번의 실행에만** 적용되고 시스템 설정을 바꾸지 않는다.
+
+둘 다 `%USERPROFILE%\.claude\skills\` 에 스킬을 복사하고 `%USERPROFILE%\.claude\CLAUDE.md` 에 포인터를 넣는다.
+
+### Linux / macOS
+
+```bash
+git clone https://github.com/Mingi1211/Mingi1211.git ~/repos/mingi-memory
+bash ~/repos/mingi-memory/scripts/sync-memory.sh
+```
+
+### 이후 갱신
+
+레포가 바뀔 때마다 같은 스크립트를 다시 실행한다. 내부에서 `git pull`을 하므로 클론은 최초 1회면 된다.
+
+스크립트가 하는 일: 최신 커밋을 받아 `.claude/skills/*`를 `~/.claude/skills/`로 복사하고,
+`~/.claude/CLAUDE.md`에 기억 파일 위치를 가리키는 블록을 넣는다. 마커로 감싸므로 **여러 번 실행해도 중복되지 않는다.**
+
+> *(Linux / macOS 한정)* 심볼릭 링크(`ln -s`)로 걸면 `git pull`만으로 동기화되지만,
+> 링크된 스킬 디렉터리가 인식되는지는 버전에 따라 다를 수 있다. 확실한 쪽은 위의 복사 방식이다.
 
 ---
 
@@ -84,6 +108,16 @@ Mingi1211/Mingi1211 에 커밋·푸시        ← 정본은 항상 여기 하나
 거기서 직접 고치지 말고 레포에서 고친 뒤 다시 동기화한다.
 
 ---
+
+## 스크립트가 안 될 때
+
+| 증상 | 원인 / 대응 |
+|---|---|
+| `bash: command not found` | 윈도우 PowerShell에서 `.sh`를 돌린 것. A-1(Git Bash) 또는 A-2(`.ps1`) 사용 |
+| `이 시스템에서 스크립트를 실행할 수 없으므로` | 실행 정책. `powershell -ExecutionPolicy Bypass -File ...` 로 실행 |
+| `git: 명령을 찾을 수 없습니다` | Git for Windows 미설치 → <https://git-scm.com/download/win> |
+| `~/.claude/CLAUDE.md` 한글이 깨짐 | 스크립트는 UTF-8(BOM 없음)로 쓴다. 메모장으로 저장하면 깨질 수 있으니 VS Code로 열 것 |
+| 스크립트 자체가 안 되면 | **수동으로 해도 된다.** `.claude/skills/` 의 폴더 3개를 `%USERPROFILE%\.claude\skills\` 로 복사하고, `%USERPROFILE%\.claude\CLAUDE.md` 에 STATE.md 경로를 가리키는 문장 몇 줄을 직접 적으면 끝이다 |
 
 ## 확인 방법
 

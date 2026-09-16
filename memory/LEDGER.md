@@ -13,6 +13,7 @@
 | 2026-09-15 | 환경 | 한글 폰트 없음 → `apt-get install -y fonts-noto-cjk` 필요 | fc-list 확인 |
 | 2026-09-15 | 환경 | `pptxgenjs`·`python-pptx`·`poppler-utils` 미설치. playwright는 `/opt/node22/lib/node_modules/playwright`에 전역 존재 | npm ls -g |
 | 2026-09-15 | 환경 | `apt-get install poppler-utils`는 `apt-get update` 선행 필요(404) | 재현 |
+| 2026-09-16 | 환경 | **사용자 로컬 PC는 Windows** — `bash` 없음. 로컬용 스크립트는 PowerShell(.ps1) 또는 Git Bash로 줄 것. README의 Ubuntu 24.04는 **원격 연구 환경**이지 로컬이 아니다 | 사용자 진술 |
 
 ## 광운대 사실 (조사 결과 캐시 — 모두 WebSearch 기반, 1차 확인 권장)
 
