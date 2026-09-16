@@ -15,27 +15,26 @@
 **Claude는 다른 대화 세션의 내용을 읽을 수 없다.** 따라서 그 전에 사용자가 다른 대화에서
 한 작업·결정·노하우는 **여기에 없다.** 없는 것을 "안 한 것"으로 오해하지 말 것.
 
-### 아직 채워지지 않은 영역
+### 채워진 것 / 아직 빈 것
 
 | 영역 | 상태 |
 |---|---|
-| DREAM Lab 연구 진행 상황 (WBC·휴머노이드) | **공백** |
-| 다른 레포의 작업 맥락 | **공백** — 아래 목록 참고 |
-| 수업·과제·다른 팀플 | **공백** |
-| 이전 대화에서 쌓은 선호·노하우 | **공백** (복원 불가. 앞으로만 누적됨) |
+| 레포 기반 작업 맥락 | ✅ **백필 완료** (2026-09-16) → `memory/projects/` |
+| DREAM Lab 연구 진행 (WBC·휴머노이드) | **공백** — 레포로 공개된 게 없다 |
+| 수업·과제·다른 팀플 | **공백** (피지컬AI 텀프로젝트만 `projects/openvla-raccoonbot.md` 에 있음) |
+| 이전 대화에서 쌓은 선호·노하우 | **공백 · 복원 불가.** 앞으로만 누적된다 |
 
-### 백필 후보 (사용자 계정의 레포, 2026-09-16 기준)
+> 공백을 채우려면 `memory/HANDOFF-PROMPT.md` 의 프롬프트를 **그 대화로 가져가서** 붙여넣는다.
 
-| 레포 | 최근 푸시 | 공개 |
-|---|---|---|
-| `Mingi1211/sensor-logger` | 2026-09-02 | public |
-| `Mingi1211/dreamlab-bootcamp` | 2026-08-31 | public |
-| `Mingi1211/Claude-Routine` | 2026-07-21 | private |
-| `Mingi1211/openvla-raccoonbot` | 2026-05-31 | public |
-| `Mingi1211/mygit` | 2026-01-31 | private |
+### 백필 결과 (2026-09-16, 레포 5개 전부 확인)
 
-→ 사용자가 원하면 레포를 세션에 붙여 읽고 `memory/projects/<이름>.md` 로 정리한다.
-**대화 기록이 아니라 실제 산출물에서 복원하는 것이므로 오히려 검증 가능하다.**
+| 레포 | 결과 |
+|---|---|
+| `openvla-raccoonbot` | ✅ `memory/projects/openvla-raccoonbot.md` |
+| `dreamlab-bootcamp` | ✅ `memory/projects/dreamlab-bootcamp.md` |
+| `sensor-logger` | ✅ `memory/projects/sensor-logger.md` |
+| `claude-routine` | **빈 레포** (커밋 0) — 정리할 내용 없음 |
+| `mygit` | 파일 2개, **용도 불명** — `projects/README.md` 기타 항목에 기록 |
 
 ---
 
