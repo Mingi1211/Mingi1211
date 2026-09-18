@@ -159,6 +159,11 @@
 | 2026-09-18 | 환경 | **이 GitHub 통합은 `create_repository` 가 막혀 있다(403).** 새 레포는 사용자가 직접 만들고 `add_repo` 로 붙여야 한다 | 직접 시도 |
 | 2026-09-18 | 사실 | 입력 폼 프로토타입 게시: <https://claude.ai/artifact/5KFsa4EYePQ8SfDqjf8bJW> · `db`+`downloads` 선언 · 조직 내부 전용 | Artifact publish |
 
+| 2026-09-18 | 결정 | 부담 정규화를 **앱이 아니라 DB 트리거**로 한다. CSV import 로 `report` 를 넣어도 `load_event` 가 똑같이 생겨 프로토타입 데이터 이사가 공짜가 된다 | `db/schema.sql` |
+| 2026-09-18 | 결정 | RLS: `report` 는 **insert 만 허용, select 불가**. 집계는 뷰(`v_week_load`)로만 공개. `anon key` 가 브라우저에 노출되기 때문 | `db/schema.sql` §5 |
+| 2026-09-18 | 사실 | **아티팩트는 외부 host 로의 fetch 가 CSP 로 차단된다** → 아티팩트 폼은 Supabase 에 붙을 수 없다. 실배포 폼은 Vercel 에 올린 Next.js 페이지여야 한다 | artifact 페이지 계약 |
+| 2026-09-18 | 노하우 | 이 환경에서 **SQL 검증 가능**: `apt-get install -y postgresql` → `pg_ctlcluster 16 main start` → `su postgres -c psql`. Supabase 전용 롤 `anon`·`authenticated` 는 직접 `create role ... nologin` 으로 만들어야 스키마가 끝까지 실행된다 | 스키마 검증 |
+
 ## 미확인 — 확인되면 `[정정]`으로 새 줄 추가할 것
 
 | 날짜 | 분류 | 내용 |

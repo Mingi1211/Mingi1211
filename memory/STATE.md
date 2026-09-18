@@ -73,6 +73,8 @@
 | `docs/deck/0*.png` · `prototype-mock.html` | 프로토타입 화면 8장과 그 원본 목업 |
 | `app/collector/form.html` | **선배 수강 경험 입력 폼** (프로토타입, 동작 확인 완료) |
 | `app/collector/README.md` | 저장 형식 · 실배포 이식 방법 |
+| `db/schema.sql` | **Supabase 스키마** — 테이블 7개 · 주차 정규화 트리거 · RLS · 집계 뷰. PostgreSQL 16에서 실행 검증 완료 |
+| `db/README.md` | 적용 방법 · 참조/수집 테이블 구분 · 권한 주의 · 검증 결과 |
 
 **게시된 입력 폼** — <https://claude.ai/artifact/5KFsa4EYePQ8SfDqjf8bJW>
 저장·조회·CSV 내보내기까지 검증됨. `db` 선언 때문에 **조직 내부 전용**이라 실서비스로는 못 쓴다.
