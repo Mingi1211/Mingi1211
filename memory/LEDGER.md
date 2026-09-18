@@ -154,6 +154,11 @@
 | 2026-09-18 | 환경 | **원격 세션은 사용자 로컬 Windows 경로에 접근할 수 없다.** 로컬 파일 작업은 로컬 Claude Code 세션에서 하거나 업로드받을 것 | `/mnt/c`·`/c` 부재 확인 |
 | 2026-09-18 | 노하우 | 이 환경에서 **PDF는 HTML → Playwright `page.pdf()`** 로 만든다. LibreOffice는 여전히 불가. `@page{size:A4}` + Noto Sans CJK KR, `pdftoppm` 으로 시각 QA | 설계 계획서 제작 |
 
+| 2026-09-18 | 결정 | 기술과경영 프로젝트를 **`Mingi1211/tech-management-team2` (private)** 로 분리. 프로필 레포에서는 `docs/deck`·`docs/plan`·`docs/team-project-topic.md`·`app/` 삭제. **기억 시스템(CLAUDE.md·memory·.claude/skills·scripts)은 프로필 레포에 남긴다** — 전 프로젝트 공용이라 옮기면 다른 작업에서 안 걸림 | 사용자 지시 |
+| 2026-09-18 | 환경 | 레포 이름을 한글이 아닌 ASCII(`tech-management-team2`)로 지었다. 이번 세션에서 한글 파일명이 `pdftoppm`·LibreOffice에서 깨지는 걸 겪었고, 레포명은 URL·CLI·CI에 계속 등장한다 | 세션 경험 |
+| 2026-09-18 | 환경 | **이 GitHub 통합은 `create_repository` 가 막혀 있다(403).** 새 레포는 사용자가 직접 만들고 `add_repo` 로 붙여야 한다 | 직접 시도 |
+| 2026-09-18 | 사실 | 입력 폼 프로토타입 게시: <https://claude.ai/artifact/5KFsa4EYePQ8SfDqjf8bJW> · `db`+`downloads` 선언 · 조직 내부 전용 | Artifact publish |
+
 ## 미확인 — 확인되면 `[정정]`으로 새 줄 추가할 것
 
 | 날짜 | 분류 | 내용 |

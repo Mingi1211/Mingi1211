@@ -58,18 +58,27 @@
   `C:\Users\김민기\Desktop\광운대학교\2026-2학기\기술과경영` 에 있음. **원격 세션에서는 접근 불가** —
   필요하면 업로드 요청할 것
 
-**산출물 (모두 이 레포)**
+**⚠️ 레포가 분리됐다 (2026-09-16→09-18)** — 이 프로젝트의 산출물은 **더 이상 프로필 레포에 없다.**
 
-| 경로 | 내용 |
+> 정본: **`Mingi1211/tech-management-team2`** (private)
+> https://github.com/Mingi1211/tech-management-team2
+
+| 경로 (새 레포 기준) | 내용 |
 |---|---|
+| `README.md` | 팀원용 안내 — 왜 만드는가 · 설계 원칙 · 구성 · 다음 할 일 |
 | `docs/team-project-topic.md` | 주제안 전문 — 문제정의·범위·8인 R&R·일정·리스크·**공격 질문 10개 방어 시트**·탈락 대안 기록 |
-| `docs/deck/학기예보.pptx` | 팀 공유용 10장 덱 (글 최소, 프로토타입 중심, 발표자 노트 포함) |
-| `docs/deck/prototype-mock.html` | 프로토타입 목업 원본. 열어서 수정 후 재렌더 가능 |
-| `docs/plan/학업나침반-설계계획.pdf` | **설계 계획서 9쪽** — 아키텍처·DB 스키마·알고리즘·입력 폼·기술 스택·8인 역할·주차별 WBS(11주)·목표·리스크 |
-| `docs/plan/plan-source.html` | 위 PDF 원본. 수정 후 Playwright로 재생성 |
-| `docs/deck/0*.png` | 렌더된 화면 8장 (결과·주차상세·전후·캐릭터5단계·제스처3프레임·공유카드·엔진·히어로) |
+| `docs/plan/학업나침반-설계계획.pdf` | 설계 계획서 9쪽 — 아키텍처·DB 스키마·알고리즘·입력 폼·기술 스택·주차별 WBS(11주)·목표·리스크 |
+| `docs/plan/plan-source.html` | 위 PDF 원본. 수정 후 Playwright `page.pdf()` 로 재생성 |
+| `docs/deck/학기예보.pptx` | 팀 공유용 덱 10장 (발표자 노트 포함) |
+| `docs/deck/0*.png` · `prototype-mock.html` | 프로토타입 화면 8장과 그 원본 목업 |
+| `app/collector/form.html` | **선배 수강 경험 입력 폼** (프로토타입, 동작 확인 완료) |
+| `app/collector/README.md` | 저장 형식 · 실배포 이식 방법 |
 
-**브랜치** — **`main`에 병합 완료** (2026-09-16, fast-forward). 작업 브랜치
+**게시된 입력 폼** — <https://claude.ai/artifact/5KFsa4EYePQ8SfDqjf8bJW>
+저장·조회·CSV 내보내기까지 검증됨. `db` 선언 때문에 **조직 내부 전용**이라 실서비스로는 못 쓴다.
+실배포는 Next.js + Supabase (설계 계획서 §3·§4).
+
+**프로필 레포 브랜치** — 기억 시스템만 남았다. 작업 브랜치
 `claude/team-project-topic-selection-myr5df`도 그대로 남아 있다. 이제 레포를 그냥 클론하면
 주제안·덱·기억 시스템이 전부 들어온다.
 

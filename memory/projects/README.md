@@ -22,6 +22,12 @@
 | `chambit-little-apprentice.md` | 참빛설계 09-13 제안안 **(대체됨 → AlohaMini)** + 반려 이력 9개 |
 | `coursework-2026-2.md` | 로봇제어 과제1 가독성 수정본 · 로봇학실험4 HW1(DC 모터 Simulink) |
 
+## 별도 레포로 분리된 프로젝트
+
+| 레포 | 내용 |
+|---|---|
+| `Mingi1211/tech-management-team2` (private) | **기술과경영 2조 — 학업나침반.** 주제안·덱·설계 계획서·입력 폼 프로토타입. 진행 상황은 `STATE.md` |
+
 ## 기타 (별도 파일 없음)
 
 | 레포 | 상태 |
