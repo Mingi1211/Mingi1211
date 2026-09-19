@@ -165,6 +165,12 @@
 | 2026-09-18 | 사실 | **아티팩트는 외부 host 로의 fetch 가 CSP 로 차단된다** → 아티팩트 폼은 Supabase 에 붙을 수 없다. 실배포 폼은 Vercel 에 올린 Next.js 페이지여야 한다 | artifact 페이지 계약 |
 | 2026-09-18 | 노하우 | 이 환경에서 **SQL 검증 가능**: `apt-get install -y postgresql` → `pg_ctlcluster 16 main start` → `su postgres -c psql`. Supabase 전용 롤 `anon`·`authenticated` 는 직접 `create role ... nologin` 으로 만들어야 스키마가 끝까지 실행된다 | 스키마 검증 |
 
+| 2026-09-19 | 결정 | 제출은 **브라우저 → Next API 라우트 → Supabase**. 브라우저가 Supabase 를 직접 치지 않는다. 키가 서버에만 남고 검증을 한곳에서 한다 | `app/api/reports/route.ts` |
+| 2026-09-19 | 결정 | 주차 정규화(`weekOf`·`assignmentWeeksOf`)를 `lib/report.ts` 에 두고 **폼과 API 가 공유**한다. `db/schema.sql` 의 `week_of()` 와 값이 일치해야 한다 — 한쪽만 고치면 미리보기와 저장 결과가 어긋난다 | `lib/report.ts` |
+| 2026-09-19 | [정정] | `v_week_load` 의 건수 컬럼이 총합이라 응답당 평균인 `load_score` 와 단위가 어긋났다. **전부 응답 1건당 평균으로 수정** | 로컬 PostgreSQL 확인 |
+| 2026-09-19 | 노하우 | 이 환경에서 **Next.js API 라우트 검증법**: 목 서버(node http)를 띄워 `SUPABASE_URL` 을 거기로 돌리고 `next start` → curl 로 정상/비정상 제출 → 목이 받은 body 를 실제 PostgreSQL 스키마에 넣어 트리거까지 확인 | 이식 검증 |
+| 2026-09-19 | 환경 | **`pkill -f "next start"` 가 Bash 툴 셸까지 끊는다**(exit 144). 백그라운드 프로세스 정리는 명령을 분리하거나 PID 를 직접 쓸 것 | 실제 발생 |
+
 ## 미확인 — 확인되면 `[정정]`으로 새 줄 추가할 것
 
 | 날짜 | 분류 | 내용 |

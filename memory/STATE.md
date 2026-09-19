@@ -75,6 +75,9 @@
 | `app/collector/README.md` | 저장 형식 · 실배포 이식 방법 |
 | `db/schema.sql` | **Supabase 스키마** — 테이블 7개 · 주차 정규화 트리거 · RLS · 집계 뷰. PostgreSQL 16에서 실행 검증 완료 |
 | `db/README.md` | 적용 방법 · 참조/수집 테이블 구분 · 권한 주의 · 검증 결과 |
+| `app/page.tsx` · `app/api/reports/route.ts` | **Next.js 이식 완료.** 폼 → API 라우트 → Supabase. 빌드·타입체크·제출·검증·저장 경로 확인 |
+| `lib/report.ts` | 타입 · 주차 정규화 · 서버 검증. 폼과 API 가 공유하며 `db/schema.sql` 의 `week_of()` 와 일치해야 한다 |
+| `prototype/collector/` | 초기 아티팩트 프로토타입. 문항 검증용으로만 남김 |
 
 **게시된 입력 폼** — <https://claude.ai/artifact/5KFsa4EYePQ8SfDqjf8bJW>
 저장·조회·CSV 내보내기까지 검증됨. `db` 선언 때문에 **조직 내부 전용**이라 실서비스로는 못 쓴다.
