@@ -76,8 +76,8 @@
 | `db/schema.sql` | **Supabase 스키마** — 테이블 7개 · 주차 정규화 트리거 · RLS · 집계 뷰 |
 | `db/reset.sql` | 전부 drop. `relation already exists` 로 막혔을 때 이걸 먼저 돌린다 |
 | `db/verify.sql` | 저장 검증 6종 — 핵심은 `report` ↔ `load_event` 조인 |
-| `db/seed-robot-courses.sql` · `seed-infoconv-courses.sql` · `seed-software-courses.sql` | **교과과정 102과목** — 로봇 35 · 정보융합 31 · 소프트웨어 36. 학기·학년·담당교수. 전부 재실행 안전 |
-| `db/seed-lab-reports.sql` | **로봇학실험 1~4 부담 데이터** — 폼을 거치지 않고 `source='seed'` 로 직접. 15주차 팀프로젝트·중간 필기 1회·과제 12회·퀴즈 없음 |
+| `db/seed-robot-courses.sql` · `seed-infoconv-courses.sql` · `seed-software-courses.sql` | **교과과정 101과목** — 소프트웨어 36 · 로봇 34 · 정보융합 31. 학기·학년·담당교수. 전부 재실행 안전 |
+| `db/seed-lab-reports.sql` | **로봇학실험/AI로봇실험 1~4 부담 데이터** — 폼을 거치지 않고 `source='seed'` 로 직접. 15주차 팀프로젝트·중간 필기 1회·과제 12회·퀴즈 없음 |
 | `db/seed-tracks.sql` | 관심분야 **12트랙 · 93건 매핑** — **[초안]**, 학과 이수체계 검토 필요 |
 | `db/check-reports.sql` | 응답 사후 점검 — 오타·표기분산·중복·이상치. 주 1회 |
 | `app/page.tsx` · `app/api/reports/route.ts` | 입력 폼과 저장 API. 브라우저는 Supabase 를 직접 치지 않는다 |
