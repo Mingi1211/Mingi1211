@@ -70,6 +70,8 @@
   - Simulink: 사용자가 1·2·4번(Va=24, Jcir, 적분 위치) 수정 후 Claude가 나머지 수정 — 기어 출력 Gain `Kg`/`1/Kg`→`N1_N2`, 출력 토크 `alpha/N1_N2`, 전류·모터각도 Mux 추가(7열), 부하 모델 Mux1→`simout2`, StopTime 0.1. 부하 Derivative 구조는 유지(이론값과 일치 확인)
   - 스크립트: DC 모터는 같은 모델에 Jeq=Jm, Beq=b 넣어 실행. figure 2개(1×3), 각속도·각도는 yyaxis 오른쪽 축을 왼쪽의 1/81로
   - 결과(24V): DC·Geared 전류 동일 11.50→6.81 A, 1679.1 rpm vs 출력 20.73 rpm, 986.7° vs 12.18°. 부하: 12.12→8.71 A, 14.96 rpm, 8.74°. J_Load 3.628e-2 = Jm의 약 3600배, 환산 7.68e-6(Jm의 77%)
+  - **09-22 3차 (사용자 요청)**: StopTime 0.01 s·MaxStep 1e-5, figure 2에서 무부하 겹침 제거(부하만). 표 열을 '0.01초 값'으로, 표 2는 부하 1행. 0.01 s 값: DC·Geared 6.84 A, 1674.1 rpm vs 20.67 rpm, 80.0° vs 0.99° / 부하 12.13·8.80 A, 14.75 rpm, 0.66°. 이론 정상상태의 99.7%(무부하)·98.6%(부하)로 검증 문장 변경
+  - Mux 7→5(교안과 동일) 축소는 제안만 하고 **미적용** (사용자 답 없음)
   - 백업: `C:\MATLABackup_0921\` (수정 전 .m·.slx·보고서)
 - 수식 생성 방법: LaTeX → pandoc → OMML 추출 → HW1 수식 run 서식(Cambria Math 11pt) 입힘. pandoc의 `<m:nor/><m:sty/>` 조합은 스키마 오류라 sty 제거 필요
 
