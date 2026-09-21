@@ -270,6 +270,7 @@
 | 2026-09-02 | 프로필 README 최초 구축 · `openvla-raccoonbot` 리네임 · `sensor-logger` README → `projects/github-profile.md` |
 | 2026-09-02 | RaccoonBot 설명 자료 PDF 4쪽 (예상 질문 6개 · 말하기 대본) → `projects/openvla-raccoonbot.md` |
 | 2026-09-13 | 로봇제어 과제1 1쪽 요약 → 본문 2쪽 맞춤 → `projects/robot-control-hw1.md` · 스킬 `docx-page-fit` |
+| 2026-09-21 | 로실4 HW2(Geared Motor) 보고서 틀 — 교안 수식만 옮기고 설명 자리는 비움(사용자가 직접 작성) → `coursework-2026-2.md` ④ |
 | 2026-09-17 | 로실4 2주차 과제(5/12/24/48 V, 0/0.5/1.2 Nm)로 HW1 보고서 수치·표·분석 수정 + PDF 생성 → `coursework-2026-2.md` ③. **zip 재생성은 사용자** |
 | 2026-09-16 | 09-02·09-13 대화 인수인계 기록 (PROFILE 호칭·작업 스타일, LEDGER, sensor-logger 출처 정정) |
 | 2026-09-18 | 주제를 2기능(`학업나침반`)으로 확장 · 레포 분리 · 설계 계획서 PDF 9쪽 |
