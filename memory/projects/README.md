@@ -12,7 +12,8 @@
 | `sensor-logger.md` | `Mingi1211/sensor-logger` | uv + Docker 패키징 연습용 최소 로깅 파이프라인 (**README 문구 출처 정정 있음**) |
 | `github-profile.md` | `Mingi1211/Mingi1211` | 프로필 README 최초 구축 · 레포 리네임 · sensor-logger README (대화 기반) |
 | `robot-control-hw1.md` | 레포 없음 (로컬 docx) | 로봇제어 과제 #1 — 1쪽 요약 → 2쪽 맞춤, 이후 사용자 최종본 (대화 기반) |
-| `chambit-alohamini-serving.md` | (레포 없음 · 2026-09-14 대화 기록) | 참빛설계 로봇인턴십 — AlohaMini 트레이 서빙·정리, 계획서·조달·조립 검토 |
+| `chambit-alohamini-serving.md` | (레포 없음 · 2026-09-14 대화 기록) | 참빛설계 로봇인턴십 — AlohaMini 트레이 서빙·정리 **(대체됨 → 사피엔스 Push-T)** |
+| `chambit-sapiens-pusht.md` | `docs/chambit-plan/control-part/` (2026-09-22 대화 기록) | **참빛설계 현행** — 사피엔스 휴머노이드 Push-T, 제어 파트 계획서·재생성 절차 |
 
 ## 로컬 세션 `08a03da6` (2026-09-02~14) 대화 기반 — 2026-09-16 추가
 
