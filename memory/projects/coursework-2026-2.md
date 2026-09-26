@@ -76,6 +76,26 @@
   - 백업: `C:\MATLABackup_0921\` (수정 전 .m·.slx·보고서)
 - 수식 생성 방법: LaTeX → pandoc → OMML 추출 → HW1 수식 run 서식(Cambria Math 11pt) 입힘. pandoc의 `<m:nor/><m:sty/>` 조합은 스키마 오류라 sty 제거 필요
 
+## ⑤ 로봇제어 과제 #2 · #3 (2026-09-19 · 09-26)
+
+> 양식: 과제1 docx를 복제해 표지(텍스트박스 제목 `과제 #N`·학과/학번/성명/지도교수 표)·목록 번호(`a6`, numId 1)·본문(10pt, 왼쪽 800, 첫줄 200, 양쪽 맞춤)을 그대로 쓰고 본문만 교체.
+> 표는 `Table Grid(aa)` + `cantSplit`·`keepNext` 로 쪽 경계에서 안 쪼개지게. 생성 스크립트는 세션 scratchpad(휘발성) `build2.py`·`build3.py`.
+
+- **과제2** (`과제_2차.pdf`, 3장 교안 Mechatronics & Mechanical Actuation): mechanism 핵심 원리 + 적용 mechatronic system 사례
+  - 주제: **하모닉 드라이브** + 사례 **UR5e 관절**(Robotica 논문: 6관절 BLDC + HFUS-2SH 100:1). 폐루프 5요소 대응표(교안 Fig 1.10)
+  - **v1 → v2 사용자 피드백: "교안에 없는 내용이 너무 많다. 초반 키워드·예시·교안 매칭은 좋은데 중후반부가 통신·수식 전개로 앞서감"**
+    → RTDE 500 Hz·PWM·반사관성 1/10000·히스테리시스·전달오차·QDD 비교표 삭제, 본문 4쪽→3쪽
+  - UR 사진은 Claude가 못 넣으므로 `[ 여기에 … 사진 삽입 ]` 자리 + 캡션 + 출처 URL(Commons `File:Cobot.jpg`, UR5, CC BY-SA 4.0)
+  - 파일: `로봇제어_과제2_로봇학부_2024405002_김민기.docx`(+ 사용자가 만든 pdf). 제출 여부 [미확인]
+- **과제3** (`과제_3차.pdf`, 4장 교안 Sensors & Electrical Actuator)
+  - 3-1: **BLDC + 홀 센서**(교안 Fig 4.19·Table 4.1·3.3.10) + 사례 **전기자전거 허브 모터**(Zilog AN0260). 사진 자리 = Commons `File:BLDCBicycleHubMotor.jpg`(CC BY-SA 3.0)
+    - 교안 Table 4.1 마지막 행 `360°`는 오타로 보고 **300°** 로 적었다
+  - 3-2: 교안 94쪽 방법(τmax = Iαmax, αmax = ROMmax·ω²). **가정**: 5.4 kg = 링크(균일 막대), payload 끝 점질량, pitching·rolling 모두 수평축 회전(중력 포함), ROMmax 90°
+    - I 0.207 kg·m² · αmax 1.571 · 관성 0.33 N·m · 중력 9.42 · 합 9.74 · 안전율 1.5 → **14.6 N·m, 15 rpm, 23 W**
+    - 후보 **DCX35L 48 V**(로실4에서 쓴 값: 정격 138 mNm, 무부하 6670 rpm, Kt 68.3 mNm/A, Ra 1.76 Ω, J 99.5 g·cm²) + 감속기 효율 70% → N ≥ 151 → **160:1**, 모터측 0.131 N·m·2400 rpm, G²IL 80.9 vs IM 99.5 g·cm²
+    - ⚠️ 교안 그림의 pitching 축이 수직(중력 없음)이라면 관성 토크 0.33 N·m만 남아 결론이 바뀐다 — 수업 필기로 확인 필요 [미확인]
+  - 사용자 지시: **PDF는 만들지 말 것** — 워드가 마음에 들면 사용자가 직접 내보낸다. 파일 `로봇제어_과제3_로봇학부_2024405002_김민기.docx` (표지 포함 5쪽)
+
 ## 다음 액션
 
 - **[사용자]** 2주차 HW1: 새 PDF 확인 후 zip 재생성·제출
