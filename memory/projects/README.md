@@ -19,6 +19,7 @@
 
 | 파일 | 한 줄 |
 |---|---|
+| `cluster-humanoid.md` | 군집 휴머노이드 1차 미팅(10/1) 교수님 조언, ROBOTIS Cyclo Control 구조·실행법, 10/2~10/9 학습 일정 |
 | `humanoid-research-path.md` | 진로·대학원 판단, 학부연구 논문 방향(전신제어·힘제어), 교수님 지시, 논문 리스트 |
 | `chambit-little-apprentice.md` | 참빛설계 09-13 제안안 **(대체됨 → AlohaMini)** + 반려 이력 9개 |
 | `coursework-2026-2.md` | 로봇제어 과제1 가독성 수정본 · 로봇학실험4 HW1(DC 모터 Simulink) |
