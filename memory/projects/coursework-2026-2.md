@@ -103,6 +103,7 @@
   - 사용자 HW4의 모터 Subsystem·전류제어기 Subsystem1을 복사 재활용, 속도제어기는 전류제어기 복사 후 EMF 입력 제거, 위치제어기는 PD+Derivative+리미터. 3개 루프를 한 모델에 행으로 배치(out_i, out_w, out_th)
   - 게인: Kp_c=La·ωcc, Ki_c=Ra·ωcc(fcc 2 kHz) / ωcs=ωcc/10, Kp_s=J·ωcs/(Kt·Kg), Ki_s=B·ωcs/(Kt·Kg) (강의 20쪽 N1/N2 포함) / ωcp=ωcs/10, Kp_p=ωcp, Kd_p=ωcp/ωcs. 제한 ±48 V, ±27.3 A, 속도 6140 rpm×Kg(부하 측 7.94 rad/s — 강의 문구는 환산 없이 rad 변환만이라 [해석 선택])
   - 결과: 전류 1 A 95% 0.246 ms(이론 0.239), 15·20 A는 48 V 포화로 느려짐 / 속도 1 rad/s 2.06 ms, **6 rad/s는 3.13 rad/s에서 멈춤**(B=J/τ 가정 때문에 48 V로 낼 수 있는 최대 속도) / 위치 1° 25.1 ms(이론 23.9), 큰 각도는 3.13 rad/s 속도 한계로 램프
+  - **10-02 조교 주의사항: 과제는 Cascade PID 하나**(제어기 따로 구현 금지) → 3줄 분리 모델을 위치→속도→전류→모터 **한 줄 cascade**로 재구성. 지령 투입 위치만 Switch 2개(`mode==1` 전류, `mode==2` 속도, 3이면 전체 cascade)로 선택, 기록은 `out_c`(1 i*, 2 i, 3 ω*, 4 ω, 5 θ*, 6 θ). 결과값은 분리 버전과 동일. 분리 버전 백업 `backup_0921\HW4_reference_sim_분리버전.slx`
   - 사용자 HW4 전류제어기 Saturation이 기본값 ±0.5로 남아 있었음 → 알림
 
 ## 다음 액션
