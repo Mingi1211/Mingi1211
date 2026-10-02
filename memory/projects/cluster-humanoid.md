@@ -33,3 +33,14 @@
 - 배정: 연구 **12h**(월 21-23, 화 21-23, 수 20-23, 목 21-23, 금 9-12) / 전공 23h / 여유 2h(금 21-23)
 - **보고값 주 12시간(30%)**. 12h 중 약 6h가 참빛 계획(66h/12주)분. 시험 주 2h, 참빛 실증(11/2~11/22) 최대 15h
 - 확인 필요: 참빛 시간과 과제 시간을 **겹쳐 보고해도 되는지** (활동비 관련) 교수님께 질문
+
+## AI Worker2 매뉴얼 초안 (2026-10-02)
+- 파일: `Desktop\광운대학교\학부연구생\AI Worker2 매뉴얼(초안).docx` (세로 A4 7쪽, 바탕체 10pt, 코드는 영문만 Consolas). 생성 `docs/cluster-humanoid/build_manual.py`
+- 사용자가 **직접 읽고 이해한 대로 고칠 초안**. 각 절 끝 "□ 내 메모" 칸
+- 입력: 사용자 랩 실사용 메모(SSH `robotis@ffw-SNPR48A1043.local`, `./docker/container.sh enter`, bringup `ffw_sg2_follower_ai.launch.py`,
+  Cyclo movel + `/r_goal_move` 예시, 리더 `ffw_lg2_leader_ai.launch.py`, 관절 궤적 직접 publish 예시) + docs.robotis.com AI Worker 문서 11개 페이지
+- 확인한 사실: SG2 25 DOF(팔 7×2·그리퍼 2·머리 2·리프트 1·베이스 6), 페이로드 정격 3/6 kg·최대 5/10 kg, ros2_control 100 Hz·컨트롤러 전부 위치 궤적(JTC)+스워브,
+  RMW = Zenoh(2.0.0~, bringup 전 `ros2 run rmw_zenoh_cpp rmw_zenohd` 필요), 처음 켜면 토크 오프 → 원격 E-STOP A 버튼, Orin에서 apt upgrade 금지,
+  Cyclo 파라미터(kp/weight/weight_damping/cbf_alpha/slack_penalty/lift_vel_bound…)
+- 짚은 것: ① 메모에 Zenoh 데몬 단계 없음 ② bringup 명령의 `\ ` 줄바꿈 오류 ③ 관절 궤적 직접 publish 토픽 = Cyclo 출력 토픽 → QP 안전 필터 우회, 안전 경로는 movej + raw_joint_trajectory
+  ④ 리더·Cyclo·직접 발행 동시 사용 금지(추정) ⑤ 전류(토크) 제어 경로가 기본 구성에 없음 → 참빛 임피던스 확인 필요
