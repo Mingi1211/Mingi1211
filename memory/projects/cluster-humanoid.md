@@ -61,3 +61,13 @@
   **E6 T=1 DLS 관절속도 12.9 rad/s 폭주** / **E7 T=1 QP 1.5 rad/s 한계 유지** / **E8 Cyclo식 측정값 적분 → 중력 처짐 정상상태 11.8 mm**
   → 보고 핵심: QP를 쓰는 이유(E6/E7), 중력·하중 feedforward 필요(E8, 교수님 조언과 연결)
 - 다음 주(PART E, 미검증): 실로봇 movel 같은 목표 비교 / `shkwon98/mujoco_ros2_control_menagerie`의 `ai_worker_mujoco_bringup` + Cyclo 토픽 리매핑
+
+### 개정 (2026-10-04 오후) — 실제 Cyclo까지 미팅 전 필수
+- 사용자 지시: **실제 Cyclo를 MuJoCo에서 확인하는 것까지가 미팅(10/8 목) 전 할 일.** 일정: 일 MR 이론 3h / 월 하루 종일(실습 + 이론 마무리) / 화 오전 현대와 공유(작업 없음) / 수 3~4h 보완 + 예상 질문
+- "석사 선배 파일" = 10/2 붙여넣은 실사용 메모가 맞음 (사용자 확인)
+- 매뉴얼 개정본(같은 파일명 덮어씀, 16쪽): PART 0 MR1(일) → A 환경·ROS 설치 선행 → B 미니 Cyclo → **C 실제 Cyclo 빌드 + `cyclo_mujoco_bridge.py`** → D 소스·MR2 → E 화요일 1장 → F 수요일 슬라이드 8장 + 예상 질문 13개
+- **연결 방식 = 자체 브리지 노드**(ros2_control MuJoCo 패키지 대신): /joint_states 100 Hz 발행 + `/leader/joint_trajectory_command_broadcaster_{right,left}/joint_trajectory`·`/leader/joystick_controller_right/joint_trajectory` 구독 → 위치 액추에이터 목표. Cyclo 수정 없음.
+  MJCF 관절 31개 이름이 Cyclo URDF(`cyclo_motion_controller_models/models/ai_worker/ffw_sg2_follower.urdf`)와 전부 일치(확인). Sim 클래스는 Windows에서 실행 검증, **rclpy 부분은 미검증**
+- `--gravcomp`(qfrc_applied = qfrc_bias, 팔 14축): 미니 Cyclo E9에서 Cyclo식 적분 정상상태 오차 11.8 → 3.4 mm
+- Cyclo 빌드: README대로 `vcs import < cyclo_control_ci.repos`(robotis_interfaces) → rosdep → colcon Release. 브리지 venv는 `--system-site-packages` + `numpy<2`
+- 실제 Cyclo 실험 C1~C7(예측 포함): 기본 / gravcomp / T=0 / 자기충돌(두 손 모은 뒤 오른손을 왼손 자리로) / 도달 불가 / config_file로 kp·α 변경 / FK 일치(/r_gripper_pose vs MuJoCo)

@@ -36,6 +36,7 @@ ap.add_argument('--qdmax', type=float, default=1.5, help='관절 속도 한계 [
 ap.add_argument('--alpha', type=float, default=50.0, help='CBF 계수 (Cyclo cbf_alpha = 50)')
 ap.add_argument('--integrate', choices=['feedback', 'command'], default='command',
                 help='feedback: q_cmd = q_측정 + q̇Δt (Cyclo 방식) / command: q_cmd = q_cmd + q̇Δt')
+ap.add_argument('--gravcomp', action='store_true', help='팔 관절에 중력·코리올리 토크를 그대로 더해 줌 (이상적인 중력 보상 feedforward)')
 ap.add_argument('--out', default='arm_ik', help='결과 파일 이름 앞부분')
 ap.add_argument('--view', action='store_true')
 args = ap.parse_args()
@@ -122,6 +123,8 @@ while t < args.T + 1.0:
         dq = solve_dls(J, xd) if args.solver == 'dls' else solve_qp(J, xd, q_base)
         q_cmd = np.clip(q_base + dq * dt_ctrl, qmin, qmax)
         d.ctrl[aid] = q_cmd
+    if args.gravcomp:
+        d.qfrc_applied[dof] = d.qfrc_bias[dof]           # τ_ff = g(q) + C(q,q̇)q̇ (MR 8장, RNEA)
     mujoco.mj_step(m, d)
     step += 1
     t += dt
