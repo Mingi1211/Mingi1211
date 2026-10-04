@@ -44,3 +44,20 @@
   Cyclo 파라미터(kp/weight/weight_damping/cbf_alpha/slack_penalty/lift_vel_bound…)
 - 짚은 것: ① 메모에 Zenoh 데몬 단계 없음 ② bringup 명령의 `\ ` 줄바꿈 오류 ③ 관절 궤적 직접 publish 토픽 = Cyclo 출력 토픽 → QP 안전 필터 우회, 안전 경로는 movej + raw_joint_trajectory
   ④ 리더·Cyclo·직접 발행 동시 사용 금지(추정) ⑤ 전류(토크) 제어 경로가 기본 구성에 없음 → 참빛 임피던스 확인 필요
+
+## 1주차 정기미팅(10/8 목) Cyclo 공부 매뉴얼 (2026-10-04)
+- 파일: `학부연구생\군집 휴머노이드\1주차 정기미팅_cyclo 공부 매뉴얼.docx` (세로 A4 11쪽, 레고 매뉴얼식 STEP 1~13 + 체크박스) + 같은 폴더 `arm_ik_demo.py`, `model_info.py`.
+  생성·스크립트 사본 `docs/cluster-humanoid/week1/` (build_study.py는 `../plan/build_manual.py` 헬퍼를 exec — 경로 맞춰 실행)
+- 방법: Cyclo MoveL을 **MuJoCo 단독(ROS 없음) "미니 Cyclo"**로 재현 → 소스와 대응. 일정 월 21-23 A / 화 21-23 B / 수 20-23 C+D (7h)
+- 확인 사실 (Windows, MuJoCo 3.14.0에서 직접 실행):
+  · AI Worker MJCF = `ROBOTIS-GIT/ai_worker` `ffw_description/mujoco/ffw_sg2/{ffw_sg2,scene}.xml` (sparse checkout 147MB). **MuJoCo 3.3.0은 "body mass is too small" 에러** → 최신 필요
+  · nq 38 / nv 37 / nu 25, dt 0.002, 관절별 position 액추에이터(이름 = 관절명, 팔1~3 kp 3000), base는 freejoint, EE body `end_effector_r_link`
+  · viewer CLI 플래그는 `--mjcf=`
+- Cyclo 소스(cyclo_control) 확인: MoveL 노드는 **3차 보간**(cubicVector/rotationCubic), v_d = v_ff + kp·e(kp 50, 358행),
+  **q_desired = q_feedback + q̇·dt (499행)**, MoveL 클래스는 VRController 상속 → QP는 `vr_controller.cpp` setCost/Bound/Ineq:
+  비용 Σ‖J q̇ − v_d‖²_W + q̇ᵀW_d q̇ + ρΣs (W 10/1, W_d 0.1, ρ 1000), 속도 bound, 관절 한계 CBF(α 50), 자기충돌 CBF(buffer 0.05, safe 0.02), 특이점 slack 1개.
+  Jacobian = Pinocchio LOCAL_WORLD_ALIGNED
+- 실험 결과(K=50, T=3 기본): E1 DLS 5차 최대 6.8 mm / E2 3차 7.2 / E3 K5 13.2 / E4 λ0.3 38.5 / E5 QP 4.7 /
+  **E6 T=1 DLS 관절속도 12.9 rad/s 폭주** / **E7 T=1 QP 1.5 rad/s 한계 유지** / **E8 Cyclo식 측정값 적분 → 중력 처짐 정상상태 11.8 mm**
+  → 보고 핵심: QP를 쓰는 이유(E6/E7), 중력·하중 feedforward 필요(E8, 교수님 조언과 연결)
+- 다음 주(PART E, 미검증): 실로봇 movel 같은 목표 비교 / `shkwon98/mujoco_ros2_control_menagerie`의 `ai_worker_mujoco_bringup` + Cyclo 토픽 리매핑

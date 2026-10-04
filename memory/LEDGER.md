@@ -267,3 +267,5 @@
 | 2026-10-01 | 결정(제안) | 주간 연구 시간 12h(40h 중 30%) — 내년 1학기 조기졸업 위해 전공 최우선, 평일 가능 37h 중 하루 2~3h, 주말은 전공 | 사용자 제약 기반 계산 |
 | 2026-10-02 | 환경 | 워드에서 **바탕체는 역슬래시(\)를 ₩로 표시**한다. 코드 블록은 rFonts ascii/hAnsi만 Consolas로 바꾸고 eastAsia는 바탕체 유지 | 렌더 확인 |
 | 2026-10-02 | 결정(제안) | 캡스톤: 타 팀(ObjectNav→GPSR)과의 겹침은 플랫폼(Go2) 변경이 아니라 기여 축 변경으로 해결 — 우리는 접촉·양팔·힘 중심 조작. 사용자는 보행 관심 없음 | 사용자 요청 검토 |
+| 2026-10-04 | 환경 | AI Worker FFW-SG2 MJCF는 **MuJoCo 3.3.0에서 로드 실패**(body mass is too small) → 3.14.0 OK. 로컬 테스트는 `pip install --target <scratch>/mjlib mujoco` + PYTHONPATH로 사용자 환경 안 건드림 | 직접 실행 |
+| 2026-10-04 | 사실 | Cyclo MoveL = 3차 보간 + v_d=v_ff+kp·e + QP(vr_controller.cpp) + q_d=q_측정+q̇Δt. MuJoCo 재현 시 측정값 적분은 중력 처짐 11.8 mm 정상상태 오차 | cyclo_control 소스·실험 |
