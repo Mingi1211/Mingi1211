@@ -269,3 +269,4 @@
 | 2026-10-02 | 결정(제안) | 캡스톤: 타 팀(ObjectNav→GPSR)과의 겹침은 플랫폼(Go2) 변경이 아니라 기여 축 변경으로 해결 — 우리는 접촉·양팔·힘 중심 조작. 사용자는 보행 관심 없음 | 사용자 요청 검토 |
 | 2026-10-04 | 환경 | AI Worker FFW-SG2 MJCF는 **MuJoCo 3.3.0에서 로드 실패**(body mass is too small) → 3.14.0 OK. 로컬 테스트는 `pip install --target <scratch>/mjlib mujoco` + PYTHONPATH로 사용자 환경 안 건드림 | 직접 실행 |
 | 2026-10-04 | 사실 | Cyclo MoveL = 3차 보간 + v_d=v_ff+kp·e + QP(vr_controller.cpp) + q_d=q_측정+q̇Δt. MuJoCo 재현 시 측정값 적분은 중력 처짐 11.8 mm 정상상태 오차 | cyclo_control 소스·실험 |
+| 2026-10-05 | 노하우 | Windows 데스크톱 세션을 Ubuntu Claude Code로 옮기기: export_transcript zip 안의 <sessionId>.jsonl을 ~/.claude/projects/<cwd의 영문·숫자 외 문자를 '-'로 바꾼 이름>/ 에 넣고 claude --resume <id>. 번들 = Downloads/cyclo_ubuntu_handoff.zip (restore_session.sh, HANDOFF.md 포함). Ubuntu에서 resume 동작은 미검증 | 직접 구성 |
