@@ -71,3 +71,14 @@
 - `--gravcomp`(qfrc_applied = qfrc_bias, 팔 14축): 미니 Cyclo E9에서 Cyclo식 적분 정상상태 오차 11.8 → 3.4 mm
 - Cyclo 빌드: README대로 `vcs import < cyclo_control_ci.repos`(robotis_interfaces) → rosdep → colcon Release. 브리지 venv는 `--system-site-packages` + `numpy<2`
 - 실제 Cyclo 실험 C1~C7(예측 포함): 기본 / gravcomp / T=0 / 자기충돌(두 손 모은 뒤 오른손을 왼손 자리로) / 도달 불가 / config_file로 kp·α 변경 / FK 일치(/r_gripper_pose vs MuJoCo)
+
+## 10/5 Ubuntu 실습 결과와 정정 (Ubuntu → Windows 핸드오프, 10/5 18:00)
+- 자료 위치(Windows): `학부연구생\군집 휴머노이드\1주차_실습자료\` — **GUIDE.md(따라가기 가이드, 사용자 필기 포함 → 덮어쓰지 말 것)**, HANDOFF.md, cyclo_study\(CSV·그래프·수정 브리지), cyclo_control_src\(cyclo_control 8d982a0, GUIDE 줄 번호와 일치).
+  사본: 이 레포 `docs/cluster-humanoid/week1/ubuntu_1005/`
+- 실습 결과(브리지 버그 수정 후): C1 5.6 mm / C2 gravcomp 0.0 mm / C4 오른손 목표 약 9 cm 앞 정지, 왼손 약 8 cm 비켜남 / C5 x 0.80 목표 → 0.602 정지
+- **Claude(Windows) 매뉴얼 정정 5개**: ① Cyclo는 **직전 명령값으로 적분**(`ai_worker_movel_controller_node.cpp` 382 `q_feedback = q_desired_`), 측정값은 리프트만 → "q_d = q_측정 + q̇Δt", "E8 = Cyclo식"은 틀림 ② 특이점 제약은 슬롯만, 미구현 ③ DLS는 MR 본문에 없음(6.3의 확장) ④ 워크스페이스 ~/ros2_ws ⑤ 브리지 jnt_type 비교 버그(Ubuntu mujoco 3.14에서 관절 0개) → int() 비교로 수정
+- Notion: "실습" 페이지 https://app.notion.com/p/3f059c1c337e80ceada0c94688c8241a (C4·C5 설명은 사용자가 직접 고치는 중 → 덮어쓰기 금지), 형식 기준 "MR 개념" https://app.notion.com/p/MR-3f059c1c337e803b92a9d2303117cba3 (9.2까지 작성)
+- Notion 필기 정리 방식: 본인 문장·형식 유지, 틀린 것만 첨삭, 장황한 AI식 설명 금지
+- MR: 사용자는 **한글판**(쪽수 다름) → **절 번호로만 안내**. 영문 MR.pdf = 2017-05 프리프린트, Downloads에 `MR.pdf`·`Modern Robotics.pdf` 동일 파일
+- 남은 일정: 월 20–24 E1 → MR-2(11.3.3, 3.2.3.3) → C1 코드 → C2 코드+MR-5(8.3, 11.4.1) → MR-3(5.1, 5.3) → C4 코드 → MR-4(6.2, 6.3, 넘겨도 됨) /
+  화 오전 현대 미팅, 저녁 MR-6 요약 + Notion 정리 / 수 태블릿 F1~F4 → PDF → Claude가 목요일 발표자료

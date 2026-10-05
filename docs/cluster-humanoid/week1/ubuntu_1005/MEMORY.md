@@ -1,0 +1,2 @@
+- [Notion 필기 정리 방식](notion-note-editing-style.md) — 본인 형식 유지, 틀린 것만 첨삭, 장황한 AI식 설명 금지
+- [Cyclo 1주차 공부](cyclo-study-week1.md) — GUIDE.md 위치, ros2_ws, MR 한글판 쪽수, 남은 요청(Notion·발표자료)
