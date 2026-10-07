@@ -278,3 +278,4 @@
 | 2026-10-07 | 선호 | 공부용 요약 워드 서식: 제목 왼쪽 정렬 13pt, 챕터 제목 11pt, 본문 바탕체 10pt **양쪽 정렬**, 표 최소화(쭉 읽히게), 링크 생략. 예: 참빛설계학기 폴더 `Cyclo 실습 MR 개념 정리.docx` (생성 docs/mr-lectures/build_cyclo_mr.py) | 사용자 지시 |
 | 2026-10-07 | 노하우 | 워드 수식(OMML): `latex2mathml`(pip --target) → Office `MML2OMML.XSL`(C:/Program Files/Microsoft Office/root/Office16) lxml XSLT → oMath 삽입. 함정: \dot는 `<mover accent="true">`로 바꿔야 악센트, bmatrix 여러 개면 각각 {}로 감싸야 괄호가 늘어남, \qquad(mspace)는 사라져서 \text{공백}으로, **굵게 범위가 수식을 가로지르면 토큰 단위로 파싱**. 사용자: 수식은 일반 글자 말고 반드시 워드 수식 | 직접 확인 |
 | 2026-10-07 | 결정 | 주간 연구 시간 **16h**(40h 중 40%)로 상향 — 12h 책정(10/1) 대체 | 사용자 결정 |
+| 2026-10-08 | 사실 | 참빛 공지: 매주 정기미팅 **1시간 전까지 Slack Group DM**에 공부·셋업/개발·막힌 점 몇 줄, 미팅에서 팀별 5~10분 발표(자료 선택, 격주 조정 가능) | 교수님 공지 |
