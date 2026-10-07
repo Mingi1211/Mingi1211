@@ -272,3 +272,4 @@
 | 2026-10-05 | 노하우 | Windows 데스크톱 세션을 Ubuntu Claude Code로 옮기기: export_transcript zip 안의 <sessionId>.jsonl을 ~/.claude/projects/<cwd의 영문·숫자 외 문자를 '-'로 바꾼 이름>/ 에 넣고 claude --resume <id>. 번들 = Downloads/cyclo_ubuntu_handoff.zip (restore_session.sh, HANDOFF.md 포함). Ubuntu에서 resume 동작은 미검증 | 직접 구성 |
 | 2026-10-05 | 정정 | 10/4 기록 "Cyclo q_d = q_측정 + q̇Δt"는 **틀림** — 팔은 직전 명령값으로 적분(movel 노드 382 q_feedback = q_desired_), 측정값은 리프트만. 특이점 제약도 미구현. (Ubuntu 세션이 소스로 확인) | cyclo_control 8d982a0 |
 | 2026-10-05 | 선호 | MR 교재 안내는 **절 번호(예 11.3.3)로만**. 사용자는 한글판이라 쪽수가 다름 | 사용자 지시 |
+| 2026-10-07 | 사실 | 로봇제어 시험 대비 가이드 `로봇제어/로봇제어_시험대비_공부가이드.docx`(8쪽) 작성 — 사용자의 `시험대비_교안_Craig_대조표.md`(10-06)를 교안 원문·Craig PDF로 검증해 고침. Craig 문제 21개 쪽 전부 일치, PDF = 인쇄 + 8 확인. 고친 것: 5장 PDF 114는 **HW #4**(5장에 #3 없음), **6장 HW #3(PDF 89~90, 3R D-H 표) 누락 추가**, 6장 PDF 120 HW 추가, PDF 77~78 = Quiz 2. 세션표 S1~S12 | 로컬 세션 |
