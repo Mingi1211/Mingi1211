@@ -275,3 +275,4 @@
 | 2026-10-07 | 사실 | 로봇제어 시험 대비 가이드 `로봇제어/로봇제어_시험대비_공부가이드.docx`(8쪽) 작성 — 사용자의 `시험대비_교안_Craig_대조표.md`(10-06)를 교안 원문·Craig PDF로 검증해 고침. Craig 문제 21개 쪽 전부 일치, PDF = 인쇄 + 8 확인. 고친 것: 5장 PDF 114는 **HW #4**(5장에 #3 없음), **6장 HW #3(PDF 89~90, 3R D-H 표) 누락 추가**, 6장 PDF 120 HW 추가, PDF 77~78 = Quiz 2. 세션표 S1~S12 | 로컬 세션 |
 | 2026-10-07 | 노하우 | 유튜브 요약: 브라우저 timedtext 요청은 빈 응답(토큰 필요) → **yt-dlp**(`pip install --target <scratch>/ytlib yt-dlp`, `--skip-download --write-subs --sub-langs en --sub-format vtt`)로 자막만 받아 요약. MR 재생목록 PLggLP4f-rq02vX0OQQ5vrCxbJrzamYDfx (영어 수동 자막 있음). 2.1~2.5 요약 = 참빛설계학기 폴더 `Modern Robotics 강의 요약_Ch2.1-2.5.docx`, 생성 docs/mr-lectures/build_mr2.py | 직접 실행 |
 | 2026-10-07 | 선호 | 강의 요약 문서: 미사여구·불필요한 목차 없이 **챕터별로만**, 교안처럼 보고 정리할 수 있게 | 사용자 지시 |
+| 2026-10-07 | 선호 | 공부용 요약 워드 서식: 제목 왼쪽 정렬 13pt, 챕터 제목 11pt, 본문 바탕체 10pt **양쪽 정렬**, 표 최소화(쭉 읽히게), 링크 생략. 예: 참빛설계학기 폴더 `Cyclo 실습 MR 개념 정리.docx` (생성 docs/mr-lectures/build_cyclo_mr.py) | 사용자 지시 |
