@@ -128,7 +128,23 @@
   - HW Skew: Sᵀ=−S, S(ω)p=ω×p, ṘRᵀ=S (Craig 5.14~5.27)
   - 사용자 지시: **교안에 없는 내용은 Craig 교재를 근거로**, 교재 쪽·식 번호를 본문에 적음. 교안 인용은 슬라이드 번호
 
+## ⑥ 로봇학실험4 6주차(Kinematics/ODE) + 중간고사 후 프로젝트 환경 (2026-10-12 기록)
+
+- 교안 `로봇학실험4\HW6\[로봇학실험4]6주차_강의자료_Kinematics_ODE.pdf`. 과제: 순·역기구학 풀이 Script+결과사진, RobotExp_4 프로젝트(`RobotExp_4Dlg.cpp`의 SolveForwardKinematics/SolveInverseKinematics) 채우기. **프로젝트 본격 작업은 중간고사 이후** (사용자)
+- 환경 상태 (10-12 확인):
+  - VS **2017 Community 설치 완료, MFC 포함**(atlmfc/afxwin.h 있음, MSVC 14.16). VS 2022 Community(17.9)도 있으나 **2022엔 MFC 없음**(ATL만)
+  - ODE 0.13 → `C:\ode-0.13`, `premake4 ... vs2010`으로 `builds2010\ode.sln` 생성(교안의 vs2008 경로는 오타). demo_moving_trimesh **DebugDoubleDLL 빌드 성공**(10-12 21:11)
+  - NTGraph.ocx → `C:\Windows\SysWOW64`, `NTGRAPH.NTGraphCtrl.1` 레지스트리 등록 확인. 도구상자 "추가됐지만 사용 불가" 메시지는 다이얼로그 편집기 밖이라 정상
+  - C 드라이브 여유 공간 부족(2.5~5.7 GB, 99% 사용) — 정리는 사용자가 중단시킴, 미진행
+- **나중에 에러 나면 먼저 의심할 것 (사용자 요청: 기억했다가 실제 원인일 때만 언급)**
+  1. ODE vcxproj 40개가 전부 **PlatformToolset v143(VS2022 도구)** 으로 리타깃돼 있음 → VS2017에서 열면 "v143 빌드 도구 없음" 오류 가능 → 솔루션 대상 변경으로 **v141**
+  2. NTGraph는 **32비트 OCX** → RobotExp_4는 **Win32(x86)** 로 빌드해야 함. x64면 컨트롤 생성 실패
+  3. MFC 프로젝트를 VS2022로 열면 MFC가 없어 afxwin.h 오류 → VS2017로 열거나 2022에 MFC 추가
+  4. C로 기구학 식 옮길 때 정수 나눗셈(9/20=0) → 실수 리터럴 (교안 주의사항)
+  5. 디스크 공간 부족으로 빌드/설치 실패 가능
+
 ## 다음 액션
+- **[사용자]** (중간고사 후) RobotExp_4 프로젝트 — 위 ⑥의 '먼저 의심할 것' 참고
 
 - **[사용자]** 2주차 HW1: 새 PDF 확인 후 zip 재생성·제출
 - **[사용자]** HW2 그림 캡처 삽입 → PDF·zip(`HW2_학번_name.zip`: .m·.slx) 제출
