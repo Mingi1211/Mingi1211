@@ -39,3 +39,14 @@ python build2.py out2.hwp
 - 셀 문단은 `LIST_HEADER`와 **같은 레벨**이다. 셀 범위는 "다음 같은 레벨 `LIST_HEADER` 전까지"로 잡아야 한다
 - 기존 문단 글자 교체: `PARA_TEXT` 교체 + `PARA_HEADER` nchars 갱신 + 뒤쪽 `PARA_CHAR_SHAPE` 위치 이동 + `PARA_LINE_SEG` 삭제(줄정보 수 0)
 - 원래 레코드를 찾을 때 `list.index`는 **값 비교**라 같은 내용의 빈 문단을 잘못 잡는다 → `is`로 찾을 것
+
+## 그림 넣기·줄 정보 (2026-10-13)
+
+- `hwppic.py` — 글자처럼 취급 그림(gso → `$pic` 개체요소 → 그림 레코드) + BinData. pyhwp `hwp5proc models`로 파싱 검증,
+  **한글에서 열림 확인은 사용자 몫**
+- pyhwp는 pip 빌드가 안 되지만 `pip download --no-binary :all: pyhwp` 후 `src`를 PYTHONPATH에 넣으면
+  `hwp5proc models <파일> BodyText/Section0` 로 **레코드 구조 검증기**로 쓸 수 있다
+- 셀 안 긴 문단은 `PARA_LINE_SEG`를 **줄마다** 넣는다(줄 높이 1000·간격 600·피치 1600 = 10pt 160%).
+  줄 하나짜리 seg를 넣었을 때 사용자가 "양쪽 정렬로 맞춰 달라"고 함 → 한글이 seg를 레이아웃 캐시로 쓰는 것으로 추정
+- 글자 폭 추정: Noto Sans CJK 한글 0.92em(맑은 고딕 대용). 문단 모양 bit7=1이면 한글 **글자 단위** 줄나눔
+- 셀 글자를 바꿀 때 원래 칸의 회색 안내 글자모양(예: "(단과)" 49번)이 남아 일부가 흐리게 보였다 → 값 칸은 글자모양을 하나로 강제
