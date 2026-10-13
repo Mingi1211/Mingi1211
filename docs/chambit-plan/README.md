@@ -26,3 +26,12 @@ python build2.py out2.hwp
 - 문단 여백·들여쓰기 값은 **pt×200** 단위 (내어쓰기 -1200 ≈ 6pt)
 - CFB 저장은 `pythoncom.StgCreateDocfile` 사용 (olefile은 같은 크기로만 덮어쓰기 가능)
 - **한글에서 열어 확인한 적은 없다.** pyhwp 파서로 구조만 검증함
+
+## Linux에서 저장하기 (2026-10-13 추가)
+
+`pythoncom`이 없는 원격(Linux) 세션에서는 `cfbwrite.py`의 `write_cfb(path, {"BodyText/Section0": bytes, ...}, root_clsid)` 로 저장한다.
+원본 스트림을 그대로 넣으면 olefile 기준 **바이트 단위로 동일하게** 왕복된다(검증함). pyhwp는 이 환경에서 빌드 실패.
+
+- 셀 문단은 `LIST_HEADER`와 **같은 레벨**이다. 셀 범위는 "다음 같은 레벨 `LIST_HEADER` 전까지"로 잡아야 한다
+- 기존 문단 글자 교체: `PARA_TEXT` 교체 + `PARA_HEADER` nchars 갱신 + 뒤쪽 `PARA_CHAR_SHAPE` 위치 이동 + `PARA_LINE_SEG` 삭제(줄정보 수 0)
+- 원래 레코드를 찾을 때 `list.index`는 **값 비교**라 같은 내용의 빈 문단을 잘못 잡는다 → `is`로 찾을 것
