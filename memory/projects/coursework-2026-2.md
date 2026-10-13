@@ -142,12 +142,12 @@
   3. MFC 프로젝트를 VS2022로 열면 MFC가 없어 afxwin.h 오류 → VS2017로 열거나 2022에 MFC 추가
   4. C로 기구학 식 옮길 때 정수 나눗셈(9/20=0) → 실수 리터럴 (교안 주의사항)
   5. 디스크 공간 부족으로 빌드/설치 실패 가능
-  6. **MATLAB에 Symbolic Math Toolbox 없음**(설치: MATLAB·Simulink·Control·Signal·Statistics만) → 교안처럼 `syms`로 C 코드 식 뽑으려면 애드온 설치 필요. 없으면 x=l1c1+l2c12 직접 작성
+  6. (해결) Symbolic Math Toolbox — 10-13 사용자가 설치함. 교안 10쪽처럼 syms로 C 코드용 식 출력 가능
 
 ## ⑦ 로봇학실험4 HW6 (6주차 과제, 2026-10-13)
 - 과제(`HW6\[로봇학실험4]6주차_과제.pdf`): 평면 2R 기구 DH 파라미터 작성 + (45°,90°,L1=L2=1)·(0°,90°,L1=2,L2=3) 끝점 위치 MATLAB 소수점 둘째 자리
 - 결과: Case1 (0.00, 1.41, 0.00) m, Case2 (2.00, 3.00, 0.00) m. DH: α=0, a=[0 L1 L2], d=0, θ=[θ1 θ2 0] (교안 Craig 형식)
-- 스크립트 `C:\MATLAB\HW6_2024405002_kimmingi.m`(HW6 폴더에도 복사): 사용자 수업 파일(`syms = theta1 theta2` 오타 + 툴박스 없음)을 수치 계산 for문으로 재작성, 원본은 `C:\MATLAB\backup_1013\`. Case별 링크 형상 subplot
+- 스크립트 `C:\MATLAB\HW6_2024405002_kimmingi.m`(HW6 폴더에도 복사): 사용자 수업 파일(`syms = theta1 theta2` 오타 + 툴박스 없음)을 재작성 → 툴박스 설치 후 syms(theta1 theta2 l1 l2)로 일반식 T03 구하고 for문에서 subs로 대입하는 구조(교안 10쪽). Case1 X 정확히 0, 원본은 `C:\MATLAB\backup_1013\`. Case별 링크 형상 subplot
 - 보고서 `HW6\HW6_2024405002_Kimmingi.docx`: HW4 양식 기반, 서론(교안 정리 1~9)·본론·결론 전부 작성, 기구 그림 삽입, **캡처 자리 3개(코드/Command Window/figure)는 사용자**. 교안 오류 반영: DH 정의의 '따라/주위로' 뒤바뀜, atan2(-1,-1)=-135°(교안 135), Hatenberg→Hartenberg
 
 ## 다음 액션
