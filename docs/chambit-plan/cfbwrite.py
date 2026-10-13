@@ -83,7 +83,6 @@ def write_cfb(path, streams, clsid_root=b'\0'*16):
     hdr[0:8]=bytes.fromhex('D0CF11E0A1B11AE1')
     struct.pack_into('<HHHHH',hdr,24,0x3E,3,0xFFFE,9,6)
     struct.pack_into('<IIIIIIII',hdr,40,0,nfat,dir_start,0,CUTOFF,mf_start,n_mf,EOC)
-    struct.pack_into('<I',hdr,68,0)
     difat=[fat_start+j for j in range(nfat)]+[FREE]*(109-nfat)
     hdr[76:512]=b''.join(struct.pack('<I',x) for x in difat)
     with open(path,'wb') as f:

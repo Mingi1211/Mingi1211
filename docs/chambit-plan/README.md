@@ -30,7 +30,11 @@ python build2.py out2.hwp
 ## Linux에서 저장하기 (2026-10-13 추가)
 
 `pythoncom`이 없는 원격(Linux) 세션에서는 `cfbwrite.py`의 `write_cfb(path, {"BodyText/Section0": bytes, ...}, root_clsid)` 로 저장한다.
-원본 스트림을 그대로 넣으면 olefile 기준 **바이트 단위로 동일하게** 왕복된다(검증함). pyhwp는 이 환경에서 빌드 실패.
+원본 스트림을 그대로 넣으면 olefile 기준 **바이트 단위로 동일하게** 왕복된다. pyhwp는 이 환경에서 빌드 실패.
+
+> ⚠️ **olefile은 헤더 오류를 그냥 넘긴다.** 첫 버전은 헤더 offset 68(첫 DIFAT 섹터)에 0을 써서 **한글에서 '파일 손상'** 이 났다(2026-10-13). 반드시 `0xFFFFFFFE`.
+> 저장 후에는 FAT 체인·DIFAT·미니스트림을 직접 검사하는 엄격 검사를 돌릴 것 (olefile 통과 ≠ 한글 통과)
+- 수정·새 문단에도 `PARA_LINE_SEG`를 1개(textStart 0) 남기고 줄정보 수=1로 둔다 (지우지 않음)
 
 - 셀 문단은 `LIST_HEADER`와 **같은 레벨**이다. 셀 범위는 "다음 같은 레벨 `LIST_HEADER` 전까지"로 잡아야 한다
 - 기존 문단 글자 교체: `PARA_TEXT` 교체 + `PARA_HEADER` nchars 갱신 + 뒤쪽 `PARA_CHAR_SHAPE` 위치 이동 + `PARA_LINE_SEG` 삭제(줄정보 수 0)
