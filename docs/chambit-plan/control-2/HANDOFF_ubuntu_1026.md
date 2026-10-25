@@ -5,7 +5,7 @@ Windows Claude 세션에서 참빛설계(AI Worker2 2대 협동 박스 운반) *
 
 ## Ubuntu Claude가 먼저 할 것
 
-1. 이 파일을 끝까지 읽는다. 이어서 `memory/STATE.md`의 참빛 절과 `memory/LEDGER.md`에서 `2026-10-0`~`2026-10-09` 줄을 읽는다.
+1. 이 파일을 끝까지 읽는다. 이어서 `memory/STATE.md`의 참빛 절과 `memory/LEDGER.md`에서 `2026-10-0`~`2026-10-26` 줄을 읽는다.
 2. 사용자: 호칭 **민기님**, 한국어, 결론 먼저, 장황한 AI식 설명 금지. Notion 정리는 **본인 문장·형식을 유지하고 틀린 것만 첨삭**한다
    (`docs/cluster-humanoid/week1/ubuntu_1005/notion-note-editing-style.md`).
 3. 학습 방식(사용자 결정): MR을 처음부터 읽지 않는다. **시뮬·실물에서 먼저 돌리고 → 방금 쓴 식에 해당하는 MR 절만 15~30분 → Notion에 "식 한 줄 + 코드 줄 번호 + 그래프"**.
