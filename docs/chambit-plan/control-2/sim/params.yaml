@@ -1,0 +1,34 @@
+# 2번 하위 제어 파라미터 — 값은 Gazebo 시작용 추정치. 실물은 낮은 게인부터 다시 튜닝
+impedance_controller:
+  ros__parameters:
+    mode: gravity            # spring | gravity | task
+    sides: [r]               # [r] → 양팔이면 [r, l]
+    rate: 100.0
+    source: goal             # goal(/impedance/<s>/goal) | cyclo(Cyclo 관절 궤적 → FK)
+    ee_frame_r: end_effector_r_link   # Cyclo ai_worker_config.yaml과 같은 프레임
+    ee_frame_l: end_effector_l_link
+
+    # spring 모드 (관절 1개)
+    spring_joint: 4          # 1~7
+    k_spring: 20.0           # Nm/rad
+    d_spring: 1.0
+
+    # gravity / spring 모드의 관절 PD (gravity에서 0에 가깝게 하면 "떠 있는" 팔)
+    Kq: [30.0, 30.0, 30.0, 30.0, 10.0, 10.0, 10.0]
+    Dq: [2.0, 2.0, 2.0, 2.0, 0.5, 0.5, 0.5]
+
+    # task 모드 — 리더/팔로워
+    preset_r: leader
+    preset_l: follower
+    leader_K_pos: [600.0, 600.0, 600.0]      # N/m (x, y, z)
+    follower_K_pos: [150.0, 150.0, 600.0]    # 수평 부드럽게, 수직 딱딱
+    K_rot: [30.0, 30.0, 30.0]                # Nm/rad
+    zeta: 1.0                                # D = 2ζ√(Λ_ii K_ii)
+    K_null: 5.0
+    D_null: 1.0
+    armature_wrist: [0.0, 0.0, 0.0, 0.0, 0.05, 0.05, 0.05]   # 교수님: 손목 5·6·7 관성 키워 Λ
+    fric_coulomb: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]        # 실측 정지마찰 넣기(Nm)
+
+    tau_max: [40.0, 40.0, 30.0, 30.0, 10.0, 10.0, 10.0]      # 토크 포화 — 실물은 모터 사양 확인 후
+    duration: 3.0            # 5차 궤적 시간(s)
+    state_timeout: 0.1
