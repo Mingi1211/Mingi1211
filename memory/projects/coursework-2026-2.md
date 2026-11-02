@@ -150,6 +150,12 @@
 - 스크립트 `C:\MATLAB\HW6_2024405002_kimmingi.m`(HW6 폴더에도 복사): 사용자 수업 파일(`syms = theta1 theta2` 오타 + 툴박스 없음)을 재작성 → 툴박스 설치 후 syms(theta1 theta2 l1 l2)로 일반식 T03 구하고 for문에서 subs로 대입하는 구조(교안 10쪽). Case1 X 정확히 0, 원본은 `C:\MATLAB\backup_1013\`. Case별 링크 형상 subplot
 - 보고서 `HW6\HW6_2024405002_Kimmingi.docx`: HW4 양식 기반, 서론(교안 정리 1~9)·본론·결론 전부 작성, 기구 그림 삽입, **캡처 자리 3개(코드/Command Window/figure)는 사용자**. 교안 오류 반영: DH 정의의 '따라/주위로' 뒤바뀜, atan2(-1,-1)=-135°(교안 135), Hatenberg→Hartenberg
 
+## ⑧ 로봇학실험4 9~11주차 ODE 실습 (2026-11-02 숙지)
+- 자료: `HW9\[로봇학실험4]9주차_강의자료_ODE.pdf`(23쪽, 과제 p22: 2-DOF Manipulator 위에서 본 모습 완성, Mass = Length, 코드+스크린샷), `로봇학실험4\ODE 코드 타이핑용 문서.docx`(구/캡슐/실린더/상자/고정·힌지·슬라이더 조인트/PControl/충돌 nearCallback 예제)
+- 프로젝트: `로봇학실험4\RobotExp_4\RobotExp_4.sln` (MFC, 소스 `RobotExp_4\RobotExp_4\`, ODE는 솔루션 폴더 안 `ode-0.13\{include,lib\DebugDoubleDLL,drawstuff\textures}`, DLL `ode_doubled.dll`·`drawstuffd.dll`은 프로젝트 폴더에). 채울 곳: `ODE.cpp`의 TO DO(InitODE/RunODE/StartDrawStuff/SimLoop/Command/Stop/InitRobot/PControl), `RobotExp_4.cpp` InitInstance(CThreadedWorker+ODEWork, SystemMemory "JointData"), 나중에 `RobotExp_4Dlg.cpp` Solve Forward/InverseKinematics, `CommWork.cpp`
+- 빌드 확인(11-02): **Debug|Win32만 v141 + ODE 경로 설정됨**(Release/x64는 v143·경로 없음 → 쓰지 말 것). **vcxproj의 Windows SDK 10.0.17763.0 미설치 → MSB8036 오류**, 설치된 SDK는 19041/22621/26100. `WindowsTargetPlatformVersion=10.0.19041.0`으로 VS2017 MSBuild 빌드 성공(한글 경로 문제 없음, C4819 경고만)
+- 타이핑 문서의 함정(실제 문제일 때만 언급): 2링크 예제에서 `dMassSetCapsuleTotal(..., length, r)`·`dCreateCapsule(space, length, r)` 인자 순서가 (radius, length)와 뒤바뀜(그리기는 GetParams도 뒤바꿔 겉보기 정상, 질량·충돌은 반지름 1.0으로 틀림), `dt = 2.1` 오타(뒤에서 0.1로 정정), capsule 질량 direction 1(x)인데 geom은 z축 장축, 슬라이더 축에 anchor 배열(c_*) 사용, `g_Ground`는 nearCallback보다 위에 static 선언 필요
+
 ## 다음 액션
 - **[사용자]** HW6 캡처 3개 삽입 → PDF·zip 제출
 - **[사용자]** (중간고사 후) RobotExp_4 프로젝트 — 위 ⑥의 '먼저 의심할 것' 참고
