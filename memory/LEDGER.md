@@ -310,3 +310,5 @@
 | 2026-11-03 | 외부 | **AhaRobot**(Tianjin Univ., arXiv 2503.10070, IROS 2025 추정): 차동구동 베이스(ODrive) · 스테퍼 벨트 리프트 1250 mm · 양팔 STS3215 위치 서보(어깨·팔꿈치 듀얼모터) · ESP32 66 Hz PID · 힘센서·충돌감지 없음 · 베이스-팔 협조 제어기 없음 · ACT/π0, Table Cleaning·Pan Sweeping에서 청크 불연속 보고 · 약 $1,000(연산 제외) | arXiv HTML v2·readthedocs (web-fetch 에이전트 판독) |
 | 2026-11-03 | 사실 | LiPo(IJCAS 2025, 액션 청크 최소저크 후처리)의 교신저자 = **박수한 교수님(광운대)**. 고정 베이스 단일 팔·관절공간·위치제어(OpenManipulator-Y 400 Hz) 기준, 향후 과제로 contact-aware blending·폐루프 적응 명시 | 논문 본문 |
 | 2026-11-03 | 결정(제안) | 캡스톤(2027-1) 제어 파트 후보를 AhaRobot 위 **운동학(속도·위치) 레벨**로 한정 — 위치 서보·힘센서 없음이라 토크 레벨 WBC는 혼자 4-1에 불가 | AhaRobot 하드웨어 사양 |
+| 2026-11-03 | 외부 | 저가 팔 센서리스 외력 추정 최신작(NEXT·NeuralActuator·CoPRE·Minimalist Compliance)은 모두 **고정 베이스 팔**에서만 검증. 모바일 베이스 사례는 FWBC-VLA(고가 바퀴-다리 4족)·Nori A3(측정 결과 없음)뿐 | arXiv 2606.12406·2607.11734·2609.27381·2603.00913·2609.03889·2605.16537 (일부 web-fetch 요약) |
+| 2026-11-03 | 외부 | STS3215 실측 백래시 0.62°(무부하)·1.30°(부하), 듀얼서보로 감소 / Present_Current 약 6.5 mA 단위 | HardwareX 백래시 시험대 논문, Nori A3 |
