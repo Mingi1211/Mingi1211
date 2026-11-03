@@ -312,3 +312,5 @@
 | 2026-11-03 | 결정(제안) | 캡스톤(2027-1) 제어 파트 후보를 AhaRobot 위 **운동학(속도·위치) 레벨**로 한정 — 위치 서보·힘센서 없음이라 토크 레벨 WBC는 혼자 4-1에 불가 | AhaRobot 하드웨어 사양 |
 | 2026-11-03 | 외부 | 저가 팔 센서리스 외력 추정 최신작(NEXT·NeuralActuator·CoPRE·Minimalist Compliance)은 모두 **고정 베이스 팔**에서만 검증. 모바일 베이스 사례는 FWBC-VLA(고가 바퀴-다리 4족)·Nori A3(측정 결과 없음)뿐 | arXiv 2606.12406·2607.11734·2609.27381·2603.00913·2609.03889·2605.16537 (일부 web-fetch 요약) |
 | 2026-11-03 | 외부 | STS3215 실측 백래시 0.62°(무부하)·1.30°(부하), 듀얼서보로 감소 / Present_Current 약 6.5 mA 단위 | HardwareX 백래시 시험대 논문, Nori A3 |
+| 2026-11-03 | 사실 | 현대 Docker 환경(GitHub jacob020328/KW_Internship main 11-02 커밋): Gazebo 관절은 `GazeboJointActuator`가 **속도 명령 서보**(JointVelocityCmd = 10·위치오차)로 구동, RemoteGazeboSystem은 position 인터페이스만 → **토크·임피던스 불가, effort 경로(JointForceCmd·브리지·effort 인터페이스) 추가 필요**. 월드에 박스 없음, 리프트 고정(lift_vel_bound 0) | 레포 코드 직접 확인 |
+| 2026-11-03 | 결정(제안) | 2번 시뮬 1차 목표 = 1대 양팔로 박스 잡고 내부력 과다·미끄러짐 없이 10 s 유지 → 2차 운반·2대 강성 차등. 현대 코드는 `control_mode` 플래그로 분기(합의 필요). 인수인계 `docs/chambit-plan/control-2/HANDOFF_ubuntu_1103_impedance.md`(Drive 동일본) | 사용자 요청 + Claude 검토 |
