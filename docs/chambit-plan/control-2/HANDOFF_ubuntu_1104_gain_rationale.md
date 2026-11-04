@@ -1,6 +1,6 @@
 # HANDOFF — 게인 근거 재설계·최적화 (2026-11-04, Windows → Ubuntu)
 
-Windows Claude 작성. 대상 코드: GitHub `Mingi1211/Chambit_sim` main `60d7354` (`mingi_control/`).
+Windows Claude 작성. 대상 코드: GitHub `Mingi1211/Chambit_sim` main **`9d83786`** (`mingi_control/`). Ubuntu에서 먼저 `git pull` 할 것.
 함께 볼 것: 민기님 PC `학부연구생/미팅/하위제어 코드 해설_1105.pdf` (현재 코드 해설, 줄 번호 = 60d7354 기준).
 
 ## ★ 시작하면 가장 먼저 (코드·실행보다 먼저)
@@ -8,6 +8,20 @@ Windows Claude 작성. 대상 코드: GitHub `Mingi1211/Chambit_sim` main `60d73
 이 파일을 읽은 뒤 **아무 작업도 하기 전에** 3절 표의 사양 숫자 8개(Δ, F_int,max, r_min, e_box,max/F_d, T_s,max, Δz_max, 무게 오차 비율, θ_max)와
 2절 #12의 관절 한계 여유 기준을 민기님께 한 번에 묻는다. 후보값과 이유를 같이 보여 주고, 민기님이 고른 값과 **그 이유**를
 `mingi_control/GAIN_RATIONALE.md` 맨 위 "사양" 표에 적은 다음에만 계산·구현을 시작한다. 모든 게인이 이 숫자에서 나오기 때문이다.
+
+## ★ 두 번째: 팔 빼기 추가분 확인·트러블슈팅 (Windows에서 코드만 수정, Ubuntu 미검증)
+
+민기님 지적: 이전 운반은 "이동 → 옆 받침대에 놓기 → 파지 풀기 → **팔 빼기**"가 아니라 그리퍼만 열고 위치 제어로 돌아가 손이 손잡이 자리에 남은 채 끝났다.
+Windows Claude가 `transport_scenario.py`에 다음을 추가하고 푸시함(커밋 `9d83786`, 자세한 내용 `mingi_control/README.md` 10절):
+- 6 팔 빼기: 각 base_link −x로 `--retract` 12 cm + `--retract_up` 3 cm.
+  기본 `--retract_mode qp`(위치 복귀 → TF로 현재 손 자세 → 현대 QP MoveL), 대안 `--retract_mode impedance`(토크 모드로 목표 이동 → 위치 복귀)
+- 8 판정: 박스 최종 위치가 받침대 안·높이차 < 2 cm, 그리퍼 연 뒤 박스 이동 < 1 cm면 성공 (Gazebo 박스 위치, 기록용)
+
+할 일: `git pull` → 파지 → `python3 transport_scenario.py` 실행 → 끝에 찍히는 "판정"과 "팔 빼기 위치 오차" 확인.
+안 되면 트러블슈팅 순서: ① 위치 복귀 직후 팔이 튐(현대 QP가 오래된 직전 명령값에서 시작) → `--retract_mode impedance`로 비교
+② 손가락이 손잡이에 걸려 박스가 끌려옴 → 그리퍼가 q≈0까지 열렸는지, `--retract_up` 키우기 ③ 오차 > 2 cm → QP 목표 수신·robot_adapter ready 확인
+④ TF lookup 실패 → `{robot}/base_link` 프레임 이름 확인. 고친 내용은 Chambit_sim에 커밋하고 README 10절 갱신.
+게인 재설계(아래)보다 짧으니 사양 질문 다음에 먼저 끝내도 된다.
 
 ## 0. 왜 다시 하나 (민기님 말 그대로의 취지)
 
@@ -39,6 +53,7 @@ Windows Claude 작성. 대상 코드: GitHub `Mingi1211/Chambit_sim` main `60d73
 | 9 | 베이스 지연 0.2 s (오차 주입) | 임의 | 설계 입력 Δ(두 베이스 위치 오차)를 **현대 주행 오차 실측값 또는 사양**으로. 없으면 후보 제시 후 민기님 결정 | 3절 표 |
 | 10 | 남은 검증 | 미완 | T12(중력만 드리프트), T4(외력 e ≈ −F/K 재측정), T5(정착시간 — **/clock 시뮬 시간 기준**으로 analyze 수정) | 그래프 3장 |
 | 11 | 놓은 뒤 손목 떨림 | 원인 미확인 | #2·#3 경계로 박스 놓기 전후 Λ_rot 변화 확인 → 경계 넘는지 판정 | 원인 1줄 |
+| 13 | 팔 빼기 (새로 추가) | Ubuntu 미검증 | ★ 두 번째 절대로 실행·트러블슈팅 | 판정 출력·영상 |
 | 12 | 영공간 자세 목표 관절 한계 여유 limit_margin (0.15 rad ≈ 9°) | 숫자 근거 없음(문서 #3의 "한계 회피" 취지만 있음) | 운반 중 관절이 실제로 움직이는 폭(로그 q의 최대 변화량) + 위치 오차 여유로 정함. 예: 여유 = 최대 Δq + 경고 기준 0.05 rad | 로그 분석 1줄 |
 
 ## 3. 사양(설계 입력) — 민기님이 정할 숫자와 후보 이유
@@ -94,6 +109,7 @@ z축은 별도: 두 로봇 K_z를 같게(박스 수평 유지), 값은 #4.
 ## 6. 오늘 저녁 순서 (제안)
 
 1. 해설 PDF 이해 → 3절 사양 숫자 결정(민기님)
+1-1. `git pull` → 팔 빼기 추가분 실행·트러블슈팅(★ 두 번째 절)
 2. 지연 측정 → 5절 유도로 D_safety·ω_max 확정 (다른 값들의 상한이 여기서 나오므로 먼저)
 3. 4절 `lf_design.py`로 리더/팔로워 값 계산 → sweep 1회로 검증
 4. K_z, K_rot, 영공간, 램프 시간 재계산 → `gain_design.py`·`params` 갱신
