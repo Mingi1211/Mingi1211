@@ -316,3 +316,5 @@
 | 2026-11-03 | 결정(제안) | 2번 시뮬 1차 목표 = 1대 양팔로 박스 잡고 내부력 과다·미끄러짐 없이 10 s 유지 → 2차 운반·2대 강성 차등. 현대 코드는 `control_mode` 플래그로 분기(합의 필요). 인수인계 `docs/chambit-plan/control-2/HANDOFF_ubuntu_1103_impedance.md`(Drive 동일본) | 사용자 요청 + Claude 검토 |
 | 2026-11-03 | 결정 | 2번 시뮬도 **F/T·접촉 센서 없이** 진행(실물에 없으므로 시뮬=징검다리). 힘은 F_cmd·F̂_ext=Λë+Dė+Ke로만, 박스 자세는 평가 기록용. 구현은 민기 공부 문서(PD gain 설정.docx) 식↔코드 1:1 대응, 문서 밖은 [문서 밖] 표시 → 인수인계 v2 | 사용자 지시 |
 | 2026-11-04 | 결정 | 참빛 2번 게인(리더/팔로워 K_xy 800/300, ω_max 25, D_safety 0.5, 영공간 ω 8, K_rot 30)은 "범위 안 선택·실험값"이라 교수님 보고 불가 → 사양→식→최적화→sweep 검증으로 재설계. 리더-팔로워는 내력 최소화 + 추종비·박스 강성·응답속도 제약으로 정식화(제안), D_safety 0.5는 1스텝 지연 이산 안정 조건(D<Λ/T)으로 유도 가능. 인수인계 `docs/chambit-plan/control-2/HANDOFF_ubuntu_1104_gain_rationale.md` | 사용자 판단 + Claude 검토 |
+| 2026-11-05 | 외부 | **AhaRobot 팔 펌웨어는 서보를 PWM 모드로 쓰고 ESP32(66.7 Hz)가 PID를 닫는다.** 듀얼 서보에 +out/−out effort. 전류·부하는 안 읽고 호스트엔 위치만 보냄 → 센서리스 힘 추정 입력은 effort 명령, 전류는 펌웨어 수정 필요 | github.com/hilookas/AstraArmController `dualMotor.cpp`·`main.cpp`·`comm.cpp` (web-fetch 판독, config.h 미확인) |
+| 2026-11-05 | 사실 | 캡스톤 회의 결정: 순수 모델 기반 대신 **LLM 기반 명령 수행** 구조, 제어 파트 힘 추정에도 학습 포함 | 사용자 진술 |
