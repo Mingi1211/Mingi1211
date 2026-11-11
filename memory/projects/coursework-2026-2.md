@@ -156,6 +156,13 @@
 - 빌드 확인(11-02): **Debug|Win32만 v141 + ODE 경로 설정됨**(Release/x64는 v143·경로 없음 → 쓰지 말 것). **vcxproj의 Windows SDK 10.0.17763.0 미설치 → MSB8036 오류**, 설치된 SDK는 19041/22621/26100. `WindowsTargetPlatformVersion=10.0.19041.0`으로 VS2017 MSBuild 빌드 성공(한글 경로 문제 없음, C4819 경고만)
 - 타이핑 문서의 함정(실제 문제일 때만 언급): 2링크 예제에서 `dMassSetCapsuleTotal(..., length, r)`·`dCreateCapsule(space, length, r)` 인자 순서가 (radius, length)와 뒤바뀜(그리기는 GetParams도 뒤바꿔 겉보기 정상, 질량·충돌은 반지름 1.0으로 틀림), `dt = 2.1` 오타(뒤에서 0.1로 정정), capsule 질량 direction 1(x)인데 geom은 z축 장축, 슬라이더 축에 anchor 배열(c_*) 사용, `g_Ground`는 nearCallback보다 위에 static 선언 필요
 
+## ⑨ 로봇학실험4 HW9·HW10 (2026-11-05 ~ 11-11)
+- HW9: 3링크 ODE 모델 제출(zip 1.9MB, sln은 Debug|x86만 남김 — .suo 없으면 VS가 x64를 기본 선택해 빌드 실패했음)
+- HW10(MFC 통신/ODE 연동/NTGraph): 과제는 Port·Forward·Backward 스크린샷 + 보고서(코드 제출 X). 보고서 `HW10\HW10_2024405002_Kimmingi.docx`(캡처 4개 자리는 사용자)
+- **로봇 모델을 조교 예시에 맞춤**: 바닥 링크 1.0, 링크 0.5+0.5, 회전축 -x(y-z 평면). Forward(-90,90)→(0,-0.5,1.5), Backward(0,2,1)→(90,0)/Current(0,1,1) 예시와 일치. FK/IK는 RobotExp_4Dlg.cpp BASE_H/LINK_1/LINK_2
+- PControl 오차를 atan2(sin,cos)로 ±180° 랩 — 180° 근처 목표에서 심한 진동 원인이었음
+- **VS2017이 resource.h를 UTF-16 BOM+UTF-8 내용으로 저장해 깨뜨림(2회)** → 한글 주석 영어로 바꾸고 BOM 없는 ASCII로 저장하니 재발 안 함. ID 누락 시 rc 열기 실패(RC2104)
+
 ## 다음 액션
 - **[사용자]** HW6 캡처 3개 삽입 → PDF·zip 제출
 - **[사용자]** (중간고사 후) RobotExp_4 프로젝트 — 위 ⑥의 '먼저 의심할 것' 참고
